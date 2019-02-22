@@ -1,5 +1,7 @@
 library(jsonlite)
 
+# Examples of how to get data-frames from the individual .json files. 
+
 billboard_60 <- fromJSON("years/1960.json")
 billboard_70 <- fromJSON("years/1970.json")
 billboard_80 <- fromJSON("years/1980.json")
