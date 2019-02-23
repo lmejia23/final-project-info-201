@@ -8,7 +8,7 @@ library(dplyr)
 #billboard_80 <- fromJSON("years/1980.json")
 #billboard_90 <- fromJSON("years/1990.json")
 #billboard_00 <- fromJSON("years/2000.json")
-#billboard_10 <- fromJSON("years/2010.json")
+billboard_10 <- fromJSON("years/2010.json")
 
 # Function which gets a specific data frame for a given year
 
