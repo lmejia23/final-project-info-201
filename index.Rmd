@@ -1,16 +1,28 @@
 ---
 title: "Spotify"
-author: "Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
+author: "Team AD1: Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
 date: "February 22, 2019"
 output: html_document
 ---
 
 #### _Question 1_
-How do the number of streams compare from 1950 to 2015?
+Which genre has the highest number of streams?
+
+This quesiton is of interest because we can analyze which genre is popular among all the different number of genres that are in todays music industry. Our data sets will support this by using Billboards data for the top 50 songs for a particular years and then plug those songs into spotify to tell us the number of streams 
 
 #### _Question 2_
-How do the rythm, pitch, and timbre compare from the #1 top hit of 1950 to the #1 top hit of 2015? 
+Highest stream count of the top song within each genre? In other words, from each genre, what is their highest streamed song? 
+
+This quesiton is of interest because we can compare top songs within genres, and compare that to popular genres. From this, we can assess how much influence the top songs within a genre has over the popularity of the entire genre. Our data sets will support this as we will utilize the popular songs with their genre tags associated with them. 
 
 #### _Question 3_
+How do the number of streams compare from 1950 to 2015?
+
+The intent of this question is to understand trends of users within the time frame of (x year to y year). From this data, we can also assess the number of users, and if streaming as a platform has increased.
 
 #### _Question 4_
+How do the rythm, pitch, and timbre compare from the #1 top hit of 1950 to the #1 top hit of 2015? 
+
+This question is of interest analyze themes and motifs among different genres, and how similarities of songs rythm, pitch, and timbre may affect popularity within genre. 
+
+The data set supports this by providing values of pitch and timbre from the Billboard's own metrics/scale. The data of timbre is given in units of float. 
