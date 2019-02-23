@@ -1,30 +1,25 @@
 ---
 title: "Spotify"
-author: "Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
+author: "Team AD1: Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
 date: "February 22, 2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+## Problem Domain: Spotify and Billboard Top 100
 
-## R Markdown
+Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With **_Spotify Premium_** a user is granted access to features such as ad-free streaming, unlimited skips and extreme quality streaming versus with **_Spotify Free_** a user can play music on shuffle mode and skip up to six times per hour, every hour and Spotify Radio is not available.[^1]
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Billboard Top 100 is the music industry standard record chart in the United States for songs. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. A new chart is compiled and officially released to the public every Tuesday.[^2]
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+As todays modern world continues to strive for efficency and quickeness, Spotify and Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rythm, pitch and timbre. 
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Reference
+[^1]: https://www.pocket-lint.com/apps/news/spotify/139236-what-is-spotify-and-how-does-it-work
+
+[^2]: https://en.wikipedia.org/wiki/Billboard_Hot_100
+
+[^3]: https://www.lifewire.com/what-is-streaming-music-2438445
