@@ -1,5 +1,5 @@
 ---
-title: "Spotify"
+title: "Spotify and Billboard Data"
 author: "Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
 date: "February 22, 2019"
 output: html_document
@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 source("analysis.R")
 source("billboard_data.R")
+year <- 1997
 ```
 
 ## Section 2: Billboard Data
@@ -17,7 +18,12 @@ This section focuses on data collected by Billboard, a collection of the most po
 
 This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings, which can be found [here](https://www.billboard.com/charts)
 
+Here is a sample of the data set:
+
 ``` {r find_data, echo = FALSE}
-billboard <- head(get_year(1997))
-kable()
+library("knitr")
+billboard <- head(get_year(year))
+kable(billboard, col.names = c("Song Title", "Artist", "Position"))
 ```
+
+Here you can see the song title, the artist of that song, as well as that song's position on the Billboard Top 100 in the year in question, which in this case is `r year`.
