@@ -23,4 +23,4 @@ This question is of interest because we can analyze the trends of users within t
 #### _Question 4_
 How do the rythm, pitch, and timbre compare across several different genres?
 
-This question is of interest to analyze themes and motifs among different genres, and how similarities of songs rythm, pitch, and timbre may affect popularity within genre. Our data sets will support this by providing values of pitch and timbre from Spotify's audio analysis for a particular song, chosen from Billboards top 100. 
+This question is of interest to analyze themes and motifs among different genres, and how similarities of songs rhythm, pitch, and timbre may affect popularity within genre. Our data sets will support this by providing values of pitch and timbre from Spotify's audio analysis for a particular song, chosen from Billboards top 100. 
