@@ -37,16 +37,14 @@ combine_data_frames <- function(billboard_data) {
     mutate(name = as.character(name)) %>% 
     mutate(name = gsub("\\s*\\([^\\)]+\\)", "", name)) %>% 
     mutate(name = gsub("-.*", "", name)) %>% 
+    mutate(name = gsub("!", "", name)) %>% 
     mutate(name = gsub("  ", " ", name)) %>% 
     mutate(name = trimws(name)) %>% 
     mutate(name = toupper(name))
   rownames(tracks_info) <- 1:nrow(tracks_info)
-  billboard_data <- mutate(billboard_data, title = toupper(title))
-  combined_tracks_info <- left_join(billboard_data, tracks_info, by = c("title" = "name")) 
+  billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
+    mutate(title = gsub("!", "", title))
+  combined_tracks_info <- inner_join(billboard_data, tracks_info, by = c("title" = "name")) 
   combined_tracks_info
 }
 
-View(combine_data_frames(billboard_10))
-
-View(billboard_10)
-View(tracks_info)
