@@ -45,7 +45,8 @@ combine_data_frames <- function(billboard_data) {
   rownames(tracks_info) <- 1:nrow(tracks_info)
   billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
     mutate(title = gsub("!", "", title))
-  combined_tracks_info <- inner_join(billboard_data, tracks_info, by = c("title" = "name")) 
+  combined_tracks_info <- inner_join(billboard_data, tracks_info, by = c("title" = "name")) %>% 
+    mutate(popularity = unlist(popularity))
   combined_tracks_info
 }
 
