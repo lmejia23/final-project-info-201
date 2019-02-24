@@ -7,23 +7,37 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("knitr")
 source("analysis.R")
 source("billboard_data.R")
 year <- 1997
+song_name <- "I Believe I Can Fly"
+artist_name <- "R. Kelly"
 ```
 
 ## Section 2: Billboard Data
 
-This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015. 
+This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data from spotify data base. 
+
+### First data set: list of Billboard songs
 
 This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings, which can be found [here](https://www.billboard.com/charts)
 
 Here is a sample of the data set:
 
-``` {r find_data, echo = FALSE}
-library("knitr")
+``` {r billboard data, echo = FALSE}
 billboard <- head(get_year(year))
-kable(billboard, col.names = c("Song Title", "Artist", "Position"))
+kable(billboard, col.names = c("Song Title", "Artist", "Position", "num_words", "genre"))
 ```
 
 Here you can see the song title, the artist of that song, as well as that song's position on the Billboard Top 100 in the year in question, which in this case is `r year`.
+
+### Second data set: Spotify data for each track
+
+Find the spotify data (track name, popularity [based on the number of streams, the higher that number is, the more popular that song is}, and duration) for each track in the specific `billboard_data` file.
+
+Here is a sample of the data set which presents the track name, popularity, and duration for the track "`r song_name`"" by `r artist_name`:
+
+```{r spotify data, echo = FALSE}
+kable(track_ids(paste(song_name, artist_name)))
+```

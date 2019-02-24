@@ -20,8 +20,8 @@ billboard_15 <- fromJSON("years/2015.json")
 get_year <- function(year) {
   billboard <- fromJSON(paste0("years/", year, ".json"))
   billboard <- billboard[1:50, ]
-  billboard <- select(billboard, title, artist, pos)
+  billboard <- select(billboard, title, artist, pos, num_words, tags)
   billboard
 }
-#test <- 1980
-#View(get_year(test))
+
+

@@ -27,7 +27,8 @@ track_ids <- function(name) {
   search_tracks <- GET("https://api.spotify.com/v1/search", query = list(q = name, type = "track"), add_headers(Authorization = auth_header)) 
   search_tracks_data <- fromJSON(content(search_tracks, "text"))
   track_data <- search_tracks_data$tracks$items %>% 
-    head(1)
+    head(1) %>% 
+    select(name, duration_ms, popularity)
   track_data
 }
 

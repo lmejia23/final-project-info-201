@@ -194,7 +194,9 @@ $(document).ready(function () {
 
 <div id="section-2-billboard-data" class="section level2">
 <h2>Section 2: Billboard Data</h2>
-<p>This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015.</p>
+<p>This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data from spotify data base.</p>
+<div id="first-data-set-list-of-billboard-songs" class="section level3">
+<h3>First data set: list of Billboard songs</h3>
 <p>This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found <a href="https://github.com/kevinschaich/billboard">here</a>. However, the basis of that data set are the actual Billboard rankings, which can be found <a href="https://www.billboard.com/charts">here</a></p>
 <p>Here is a sample of the data set:</p>
 <table>
@@ -203,6 +205,8 @@ $(document).ready(function () {
 <th align="left">Song Title</th>
 <th align="left">Artist</th>
 <th align="right">Position</th>
+<th align="right">num_words</th>
+<th align="left">genre</th>
 </tr>
 </thead>
 <tbody>
@@ -210,35 +214,69 @@ $(document).ready(function () {
 <td align="left">I’ll Be Missing You</td>
 <td align="left">Puff Daddy</td>
 <td align="right">3</td>
+<td align="right">538</td>
+<td align="left">hip-hop</td>
 </tr>
 <tr class="even">
 <td align="left">Un-Break My Heart</td>
 <td align="left">Toni Braxton</td>
 <td align="right">4</td>
+<td align="right">291</td>
+<td align="left">c(“hip hop rnb and dance hall”, “pop”, “r&amp;b”)</td>
 </tr>
 <tr class="odd">
 <td align="left">Can’t Nobody Hold Me Down</td>
 <td align="left">Puff Daddy</td>
 <td align="right">5</td>
+<td align="right">665</td>
+<td align="left">hip-hop</td>
 </tr>
 <tr class="even">
 <td align="left">I Believe I Can Fly</td>
 <td align="left">R. Kelly</td>
 <td align="right">6</td>
+<td align="right">339</td>
+<td align="left">c(“american”, “contemporary r&amp;b”, “hip hop rnb and dance hall”, “hip-hop”, “neo soul”, “new jack swing”, “pop”, “pop rap”, “r&amp;b”, “rnb”, “soul”)</td>
 </tr>
 <tr class="odd">
 <td align="left">Don’t Let Go</td>
 <td align="left">En Vogue</td>
 <td align="right">7</td>
+<td align="right">393</td>
+<td align="left">hip hop rnb and dance hall</td>
 </tr>
 <tr class="even">
 <td align="left">Return Of The Mack</td>
 <td align="left">Mark Morrison</td>
 <td align="right">8</td>
+<td align="right">480</td>
+<td align="left">c(“british”, “english”, “hip hop rnb and dance hall”, “uk”)</td>
 </tr>
 </tbody>
 </table>
 <p>Here you can see the song title, the artist of that song, as well as that song’s position on the Billboard Top 100 in the year in question, which in this case is 1997.</p>
+</div>
+<div id="second-data-set-spotify-data-for-each-track" class="section level3">
+<h3>Second data set: Spotify data for each track</h3>
+<p>Find the spotify data (track name, popularity [based on the number of streams, the higher that number is, the more popular that song is}, and duration) for each track in the specific <code>billboard_data</code> file.</p>
+<p>Here is a sample of the data set which presents the track name, popularity, and duration for the track “I Believe I Can Fly”&quot; by R. Kelly:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">duration_ms</th>
+<th align="right">popularity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">I Believe I Can Fly</td>
+<td align="right">320666</td>
+<td align="right">62</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
