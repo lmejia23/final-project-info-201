@@ -1,7 +1,6 @@
 # Main program script
 
 # Section 2
-
 library(httr)
 library("jsonlite")
 library(dplyr)
@@ -28,14 +27,26 @@ track_ids <- function(name) {
   search_tracks <- GET("https://api.spotify.com/v1/search", query = list(q = name, type = "track"), add_headers(Authorization = auth_header)) 
   search_tracks_data <- fromJSON(content(search_tracks, "text"))
   track_data <- search_tracks_data$tracks$items %>% 
-    head(1) 
+    head(1)
   track_data
 }
 
-View(track_ids("TiK ToK Ke$ha"))
-tracks_info <- as.data.frame(sapply(paste(billboard_10$title, billboard_10$artist), track_ids))  
-tracks_info <-  as.data.frame(t(tracks_info))
+combine_data_frames <- function(billboard_data) {
+  tracks_info <- as.data.frame(sapply(paste(billboard_data$title, billboard_data$artist), track_ids)) 
+  tracks_info <- as.data.frame(t(tracks_info)) %>% 
+    mutate(name = as.character(name)) %>% 
+    mutate(name = gsub("\\s*\\([^\\)]+\\)", "", name)) %>% 
+    mutate(name = gsub("-.*", "", name)) %>% 
+    mutate(name = gsub("  ", " ", name)) %>% 
+    mutate(name = trimws(name)) %>% 
+    mutate(name = toupper(name))
+  rownames(tracks_info) <- 1:nrow(tracks_info)
+  billboard_data <- mutate(billboard_data, title = toupper(title))
+  combined_tracks_info <- left_join(billboard_data, tracks_info, by = c("title" = "name")) 
+  combined_tracks_info
+}
 
-combined_tracks_info <- 
-  
+View(combine_data_frames(billboard_10))
+
+View(billboard_10)
 View(tracks_info)
