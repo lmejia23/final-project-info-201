@@ -1,5 +1,5 @@
 ---
-title: "Spotify & Billboards top 100"
+title: "Spotify & The Billboard Top 100"
 author: "Team AD1: Lucero Mejia, Jason Yan, Shea Frantz, Schawnery Lin"
 date: "February 22, 2019"
 output: html_document
@@ -14,35 +14,35 @@ song_name <- "I Believe I Can Fly"
 artist_name <- "R. Kelly"
 ```
 
-## Problem Domain: Spotify and Billboard Top 100
+## Problem Domain: Spotify and The Billboard Top 100
 
-Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With _Spotify Premium_ a user is granted access to features such as ad-free streaming, unlimited skips and extreme quality streaming versus with _Spotify Free_ a user can play music on shuffle mode and skip up to six times per hour, every hour and Spotify Radio is not available.[^1]
+Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With _Spotify Free_, a user can play music on shuffle mode and skip up to six times per hour, every hour. Comparitively, with _Spotify Premium_, a user is granted all of this, in addition to features such as ad-free streaming, unlimited skips, extreme quality streaming, and access to Spotify Radio.[^1]
 
-Billboard Top 100 is the music industry standard record chart in the United States for songs. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. A new chart is compiled and officially released to the public every Tuesday.[^2]
+The Billboard Top 100 is the music industry standard record chart in the United States for songs. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. A new chart is compiled and officially released to the public every Tuesday.[^2]
 
-As todays modern world continues to strive for efficency and quickeness, Spotify and Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming, an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rhythm (placement of sounds in time), pitch (the quality that makes it possible to judge sounds as "higher" or "lower") and timbre (the quality of music note or sound that distinguishes different types of musical instruments, or voices). 
+As todays modern world continues to strive for efficiency and quickness, Spotify and the Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming, an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rhythm (placement of sounds in time), pitch (the quality that makes it possible to judge sounds as "higher" or "lower") and timbre (the quality of music note or sound that distinguishes different types of musical instruments, or voices). 
 
 ## Critical Analysis Questions
 
 #### _Question 1_
 Which genre has the highest number of streams?
 
-This quesiton is of interest because we can analyze which genre is popular among all the different number of genres that are in todays music industry. Our data sets will support this by using Billboards data for the top 50 songs for a particular years and then plug those songs into spotify to tell us the number of streams. 
+This quesiton is of interest because we can analyze which genre is popular among all the different number of genres that are in todays music industry. Our data sets will support this by using Billboard's data for the top 50 songs for a particular years and then plug those songs into spotify to tell us the number of streams. 
 
 #### _Question 2_
 Highest stream count of the top song within each genre? In other words, from each genre, what is their highest streamed song? 
 
-This quesiton is of interest because we can compare top songs within genres, and compare that to popular genres. From this, we can assess how much influence the top songs within a genre has over the popularity of the entire genre. Our data sets will support this as we will utilize the popular songs with their genre tags associated with them. 
+This quesiton is of interest because we can compare top songs within genres, and compare that to popular genres. From this, we can assess how much influence the top songs within a genre have over the popularity of the entire genre. Our data sets will support this as we will utilize the popular songs with their genre tags associated with them. 
 
 #### _Question 3_
 How do the number of streams compare from 1950 to 2015?
 
-This question is of interest because we can analyze the trends of users within the time frame of (x year to y year). From the data we collect, we can assess the number of users, and analyze if streaming as a platform has increased.
+This question is of interest because we can analyze the trends of users within the time frame of **_x_ year** to **_y_ year**). From the data we collect, we can assess the number of users, as well as analyze if streaming as a platform has increased.
 
 #### _Question 4_
 How do the rythm, pitch, and timbre compare across several different genres?
 
-This question is of interest to analyze themes and motifs among different genres, and how similarities of songs rhythm, pitch, and timbre may affect popularity within genre. Our data sets will support this by providing values of pitch and timbre from Spotify's audio analysis for a particular song, chosen from Billboards top 100. 
+This question is of interest to analyze themes and motifs among different genres, and how similarities of songs' rhythm, pitch, and timbre may affect popularity within a particular genre. Our data sets will support this by providing values of pitch and timbre from Spotify's audio analysis for a particular song, chosen from the Billboard top 100. 
 
 
 ## Data Description: Billboard Top 100 and Spotify
@@ -53,7 +53,7 @@ This section focuses on data collected by Billboard, a collection of the most po
 
 This specific data set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings for a given year, which can be found [here](https://www.billboard.com/charts).
 
-Sample of Billboards Top 100 data set in `r year`:
+Sample of Billboard's Top 100 data set in `r year`:
 
 ``` {r billboard data, echo = FALSE}
 billboard <- head(get_year(year))
@@ -64,7 +64,7 @@ The table provides:
 
 - **Song title** - The name of the song.
 - **Artist** - The person who produced the song.
-- **Position** - The songs position (from 1 to 100) on the Billboards Top 100 list in a given year.
+- **Position** - The songs position (from 1 to 100) on the Billboard Top 100 list in a given year.
 - **Number of words** - The number of words, also known as lyrics, the songs contains. 
 - **Genre** - The category of artistic, musical, or literary composition characterized by a particular style the song falls in. At times the song can fall into multiple genres which wil be presented as c().
 
