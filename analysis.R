@@ -29,7 +29,7 @@ track_ids <- function(name) {
   search_tracks_data <- fromJSON(content(search_tracks, "text"))
   track_data <- search_tracks_data$tracks$items %>% 
     head(1) %>% 
-    select(name, duration_ms, popularity)
+    select(name, id, duration_ms, popularity)
   track_data
 }
 
@@ -64,6 +64,8 @@ combined_data_frames <- function(billboard_data) {
   combined_tracks_info
 }
 
-#y <- group_by(x, year) %>% 
-#  summarize(max_popularity = max(popularity), avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2))
-
+single_id <- track_ids("What do you mean Justin Bieber") %>% 
+  pull(id)
+track_analysis <- GET("https://api.spotify.com/v1/audio-features/", query = list(ids = single_id), add_headers(Authorization = auth_header))
+search_result <- fromJSON(content(track_analysis, "text"))
+View(search_result$audio_features)
