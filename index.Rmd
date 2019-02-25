@@ -5,6 +5,15 @@ date: "February 22, 2019"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("knitr")
+source("analysis.R")
+year <- 1997
+song_name <- "I Believe I Can Fly"
+artist_name <- "R. Kelly"
+```
+
 ## Problem Domain: Spotify and Billboard Top 100
 
 Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With _Spotify Premium_ a user is granted access to features such as ad-free streaming, unlimited skips and extreme quality streaming versus with _Spotify Free_ a user can play music on shuffle mode and skip up to six times per hour, every hour and Spotify Radio is not available.[^1]
@@ -13,7 +22,7 @@ Billboard Top 100 is the music industry standard record chart in the United Stat
 
 As todays modern world continues to strive for efficency and quickeness, Spotify and Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming, an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rhythm (placement of sounds in time), pitch (the quality that makes it possible to judge sounds as "higher" or "lower") and timbre (the quality of music note or sound that distinguishes different types of musical instruments, or voices). 
 
-
+## Critical Analysis Questions
 
 #### _Question 1_
 Which genre has the highest number of streams?
@@ -34,6 +43,51 @@ This question is of interest because we can analyze the trends of users within t
 How do the rythm, pitch, and timbre compare across several different genres?
 
 This question is of interest to analyze themes and motifs among different genres, and how similarities of songs rhythm, pitch, and timbre may affect popularity within genre. Our data sets will support this by providing values of pitch and timbre from Spotify's audio analysis for a particular song, chosen from Billboards top 100. 
+
+
+## Data Description: Billboard Top 100 and Spotify
+
+This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data (e.g. track name, popularity and duration) from the Spotify data base. 
+
+#### **_First data set: List of Billboard songs_**
+
+This specific data set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings for a given year, which can be found [here](https://www.billboard.com/charts).
+
+Sample of Billboards Top 100 data set in `r year`:
+
+``` {r billboard data, echo = FALSE}
+billboard <- head(get_year(year))
+kable(billboard, col.names = c("Song Title", "Artist", "Position", "number of words", "genre"))
+```
+
+The table provides:
+
+- **Song title** - The name of the song.
+- **Artist** - The person who produced the song.
+- **Position** - The songs position (from 1 to 100) on the Billboards Top 100 list in a given year.
+- **Number of words** - The number of words, also known as lyrics, the songs contains. 
+- **Genre** - The category of artistic, musical, or literary composition characterized by a particular style the song falls in. At times the song can fall into multiple genres which wil be presented as c().
+
+
+#### **_Second data set: Spotify data for a particular song_**
+
+This specific data set was collected by Spotify which can be found [here](https://developer.spotify.com/documentation/web-api/reference/search/search/). We will find the Spotify data for each track in the specific `billboard_data` file.
+
+Here is a sample of the data set for the track "`r song_name`" by `r artist_name`:
+
+```{r spotify data, echo = FALSE}
+kable(track_ids(paste(song_name, artist_name)))
+```
+
+The table provides:
+
+- **Name** - The name of the song.
+- **Duration_ms** - How long (time) the song is presented in milliseconds.
+- **Popularity** - Popularity is based on the number of streams. The higher the number of streams is, the more popular that song is.
+
+## Preliminary Analysis: Billboard Top 100 and Spotify
+
+## Proposed Data Presentation
 
 ## Reference
 [^1]: https://www.pocket-lint.com/apps/news/spotify/139236-what-is-spotify-and-how-does-it-work
