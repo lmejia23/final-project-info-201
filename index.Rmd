@@ -18,23 +18,23 @@ present_num <- 5
 
 ## Problem Domain: Spotify and The Billboard Top 100
 
-Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With _Spotify Free_, a user can play music on shuffle mode and skip up to six times per hour, every hour. Comparitively, with _Spotify Premium_, a user is granted all of this, in addition to features such as ad-free streaming, unlimited skips, extreme quality streaming, and access to Spotify Radio.[^1]
+Spotify is a digital music service that gives you access to millions of songs, podcasts and videos from artists all over the world. A user can sign up for Spotify Premium for a monthly subscription fee. With _Spotify Free_, a user can play music on shuffle mode and skip up to six times per hour, every hour. Comparatively, with _Spotify Premium_, a user is granted all of this, in addition to features such as ad-free streaming, unlimited skips, extreme quality streaming, and access to Spotify Radio.[^1]
 
 The Billboard Top 100 is the music industry standard record chart in the United States for songs. Chart rankings are based on sales (physical and digital), radio play, and online streaming in the United States. A new chart is compiled and officially released to the public every Tuesday.[^2]
 
-As todays modern world continues to strive for efficiency and quickness, Spotify and the Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming, an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rhythm (placement of sounds in time), pitch (the quality that makes it possible to judge sounds as "higher" or "lower") and timbre (the quality of music note or sound that distinguishes different types of musical instruments, or voices). 
+As today's modern world continues to strive for efficiency and quickness, Spotify and the Billboard Top 100 help with reaching these two goals. Streaming allows you to listen to music without having to download files (e.g. MP3, WMA, AAC) from the internet. In other words, with streaming, an individual can start listening to music almost immediately![^3] As a result, we can determine why songs become popular and accumulate a large number of streams by analyzing their rhythm (placement of sounds in time), pitch (the quality that makes it possible to judge sounds as "higher" or "lower") and timbre (the quality of music note or sound that distinguishes different types of musical instruments, or voices). 
 
 ## Critical Analysis Questions
 
 #### _Question 1_
 How does the average number of words of all songs in 2000 to the year 2010? 
 
-This quesiton is of interest because we can analyze how the average number of words for a songs have changed over the course of years. Our data will support this by using using Billboards data for the top 50 songs for a particular years and then plug those songs into spotify to tell us the average number of words. 
+This question is of interest because we can analyze how the average number of words for a songs have changed over the course of years. Our data will support this by using using Billboards data for the top 50 songs for particular years and then plug those songs into spotify to tell us the average number of words. 
 
 #### _Question 2_
 How does the average number of words per minute for the years 1980, 1990, 2000, 2010, 2015 compare? Does it increase or decrease? 
 
-This quesiton is of interest because we can compare if songs have increased in wordiness which can be correlated to rap music or if it has decreased. Our data sets will support this as we will utilize the popular songs from Billboard's Top 100 and get their average number of words per minute from Spotify. 
+This question is of interest because we can compare if songs have increased in "wordiness" which can be correlated to rap music or if it has decreased. Our data sets will support this as we will utilize the popular songs from Billboard's Top 100 and get their average number of words per minute from Spotify. 
 
 #### _Question 3_
 How do the top 5 popular songs from the years 1965, 1975, 1985, 1995, 2005 compare from each other?
@@ -67,7 +67,7 @@ The table provides:
 - **Artist** - The person who produced the song.
 - **Position** - The songs position (from 1 to 100) on the Billboard Top 100 list in a given year.
 - **Number of words** - The number of words, also known as lyrics, the songs contains. 
-- **Genre** - The category of artistic, musical, or literary composition characterized by a particular style the song falls in. At times the song can fall into multiple genres which wil be presented as c().
+- **Genre** - The category of artistic, musical, or literary composition characterized by a particular style the song falls in. At times the song can fall into multiple genres which will be presented as c().
 
 
 #### **_Second data set: Spotify data for a particular song_**
@@ -86,39 +86,27 @@ The table provides:
 - **Duration_ms** - How long (time) the song is presented in milliseconds.
 - **Popularity** - Popularity is based on the number of streams. The higher the number of streams is, the more popular that song is.
 
+
 ## Preliminary Analysis: Billboard Top 100 and Spotify
-
-## Proposed Data Presentation
-
-## Reference
-[^1]: https://www.pocket-lint.com/apps/news/spotify/139236-what-is-spotify-and-how-does-it-work
-
-[^2]: https://en.wikipedia.org/wiki/Billboard_Hot_100
-
-[^3]: https://www.lifewire.com/what-is-streaming-music-2438445
-
-
-
-## Section 3: Preliminary Analysis
 
 This section focuses on further analyzing each data set, providing descriptive statistics and comparative analysis for major features in data sets. (We only take the first `r present_num` rows of the data as a example from each data set for the first four tables)
 
-### First data set: list of Billboard top songs
+#### **First data set: list of Billboard top songs**
 
 The following analysis is about Billboard top `r present_num` songs. The table below is an example of Billboard `r year` top `r present_num` songs, which includes song title, artist name, number of words, and 
 genre for each track.
 
-``` {r billboard data, echo = FALSE}
+``` {r billboard data1, echo = FALSE}
 billboard_songs <- get_year(year) %>% 
   head(present_num)
 kable(billboard_songs, col.names = c("Song Title", "Artist", "Year", "Number of Words", "Genre"))
 ```
 
-### Second data set: Spotify data for Billboard `r year` top songs
+#### **Second data set: Spotify data for Billboard `r year` top songs**
 
 The following analysis is about spotify data of Billboard top `r present_num` songs, including the name, duration, popularity (Calculated based on the total number of plays the track has had and how recent those plays are, a value between 0 and 100, with 100 being the most popular), danceability (How suitable a track is for dancing based on a combination of musical elements, measured from 0.0 to 1.0), energy (Perceptual measure of intensity and activity, measured from 0.0 to 1.0), loudness (The overall loudness of a track in decibels, values range between -60 and 0 db), valence (Describing the musical positiveness conveyed by a track, measured from 0.0 to 1.0), and tempo (The overall estimated tempo of a track in beats per minute) of the track.
 
-```{r spotify data, echo = FALSE}
+```{r spotify data1, echo = FALSE}
 spotify_year_data <- tracks_audio_features_data(billboard_songs)
 spotify_data_summary <- spotify_year_data %>% 
   summarize(avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2), avg_danceability = round(mean(as.numeric(danceability)), 2), avg_energy = round(mean(as.numeric(energy)), 2), avg_loudness = round(mean(as.numeric(loudness)), 2), avg_valence = round(mean(as.numeric(valence)), 2), avg_tempo = round(mean(as.numeric(tempo)), 2))
@@ -128,18 +116,19 @@ kable(spotify_data_summary)
 
 From two tables provided above, we can see that the top `r present_num` songs has an average popularity of `r pull(spotify_data_summary, avg_popularity)`, an average duration of `r pull(spotify_data_summary, avg_duration_in_minute)` minutes, an average danceability of `r pull(spotify_data_summary, avg_danceability)`, an average energy of `r pull(spotify_data_summary, avg_energy)`, an average loudness of `r pull(spotify_data_summary, avg_loudness)` db, an average valence of `r pull(spotify_data_summary, avg_valence)`, as well as an average tempo of `r pull(spotify_data_summary, avg_tempo)` bpm.
 
-### Combined data set
+#### Combined data set
 
-The following section is about the combined data sets (Billboard top `r present_num` songs' data combined with their spotify data). We can get the correlation between song's popularity and its audio features (wwords per second, danceability, energy, loudness, valence, tempo, etc)
+The following section is about the combined data sets (Billboard top `r present_num` songs' data combined with their spotify data). We can get the correlation between song's popularity and its audio features (words per second, danceability, energy, loudness, valence, tempo, etc)
 
 ```{r combined data, echo = FALSE}
-combined_data <- combined_data_frames(billboard_songs)
+combined_data <- combined_data_frames(billboard_songs) %>% 
+  left_join(spotify_year_data, by = c("title" = "name", "duration_ms", "popularity"))
 kable(combined_data)
 ```
 
 What's more, with the combined data, we can also calculate the average popularity of top songs of `r year` and compare it with the other years to get popularity changes over time as well as the other insights on the aggregated data.
 
-## Answer to the section 1.1 questions
+### Answers to section 1.1 questions
 
 #### Question 1
 
@@ -312,33 +301,39 @@ kable(total_avg_stats, col.names = c("Year", "Average Danceability", "Average En
 
 Using this data, it's easy to see how music has changed throughout the years, with the changes in these statistics reflecting the shifts in popular genres as the years have gone by.
 
-## Section 4
+## Proposed Data Presentation
 
-## Visualization One:
+### Visualization One
 
 This visualization expresses and compares the average number of words of all songs in two given years: 2000 and 2010. A bar graph is used to represent this discrete data, and to directly compare the data versus the two years. 
 
 ![Example graphic representation to answer our first inquiry](./graph_one.jpg)
 
 
-## Visualization Two:
+### Visualization Two
 
 This visualization expresses comparisons of average number of words and lyrics per minute of all songs within a year, for a set of years. A bar graph is used to communicate the differences and trends of this average number of words per minute, although a similar representation can be made using a line graph. We chose a bar graph over a line graph because the data is more discrete and not continuous, as a line may suggest; therefore, we thought a bar graph would better represent the data we sought after.  
 
 ![Example graphic representation to answer our second inquiry](./graph_two.jpg)
 
 
-## Visualization Three:
+### Visualization Three
 
 This visualization expresses how the 5 most popular songs in a year compare with other years with their respective top 5 popular songs. This visualization uses a bar graph as well as it easily represents the popularity of a set of years' most popular songs. 
 
 ![Example graphic representation to answer our third inquiry](./graph_three.jpg)
 
 
-## Visualization Four:
+### Visualization Four
 
-This visualization expresses comparison of relative quality (determined by Billboard data set) of two songs in two different time periods. A column graph is utilized here to express comparisons of rhythm, pitch and timbre for the two songs. A column graph is utilized here to express comparisons easily. This visualization also provides a clearer comparison of "energy", which translates to dancibility, loudness, and tempo. 
+This visualization expresses comparison of relative quality (determined by Billboard data set) of two songs in two different time periods. A column graph is utilized here to express comparisons of rhythm, pitch and timbre for the two songs. A column graph is utilized here to express comparisons easily. This visualization also provides a clearer comparison of "energy", which translates to danceability, loudness, and tempo. 
 
 ![Example graphic representation to answer our fourth and final inquiry](./graph_four.jpg)
 
 
+## Reference
+[^1]: https://www.pocket-lint.com/apps/news/spotify/139236-what-is-spotify-and-how-does-it-work
+
+[^2]: https://en.wikipedia.org/wiki/Billboard_Hot_100
+
+[^3]: https://www.lifewire.com/what-is-streaming-music-2438445

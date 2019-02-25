@@ -5,6 +5,8 @@ library(tidyr)
 
 source("billboard_data.R")
 
+# Get the key for accessing Spotify API
+
 clientID = "68484b6727504e0ea7b98d1c98122c8f"
 secret = "33ea1e3429714dacb1604034d5a59670"
 
@@ -21,6 +23,7 @@ key = content(response)$access_token
 
 auth_header = paste0('Bearer ', key)
 
+# Get single track's name, id, duration, popularity information from Spotify API. Taking in a track's info (track's name and the artist), return the information of the track in a data frame.
 track_ids <- function(name) {
   search_tracks <- GET("https://api.spotify.com/v1/search", query = list(q = name, type = "track"), add_headers(Authorization = auth_header)) 
   search_tracks_data <- fromJSON(content(search_tracks, "text"))
@@ -30,12 +33,14 @@ track_ids <- function(name) {
   track_data
 }
 
+# Get specific year's billboard top songs data. Taking in the specific year as the parameter.
 get_year <- function(year) {
   billboard <- fromJSON(paste0("years/", year, ".json")) %>% 
     select(title, artist, year, num_words, tags)
   billboard
 }
 
+# Get the spotify data for all songs in specific billboard data file, taking in a specific billboard data file as a parameter.
 spotify_data <- function(billboard_data) {
   tracks_info <- as.data.frame(sapply(paste(billboard_data$title, billboard_data$artist), track_ids)) 
   tracks_info <- as.data.frame(t(tracks_info)) %>% 
@@ -52,6 +57,7 @@ spotify_data <- function(billboard_data) {
   tracks_info
 }
 
+# Combine the billboard data from specific billboard data file with its corresponding Spotify data. Taking in a specific billboard data file as a parameter.
 combined_data_frames <- function(billboard_data) {
   tracks_info <- spotify_data(billboard_data)
   billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
@@ -61,6 +67,7 @@ combined_data_frames <- function(billboard_data) {
   combined_tracks_info
 }
 
+# Get the audio features for single track from Spotify API, taking a track id as the parameter.
 get_audio_features <- function(track_ids) {
   track_analysis <- GET("https://api.spotify.com/v1/audio-features/", query = list(ids = track_ids), add_headers(Authorization = auth_header))
   features_result <- fromJSON(content(track_analysis, "text"))
@@ -68,6 +75,7 @@ get_audio_features <- function(track_ids) {
     select(id, danceability, energy, loudness, valence, tempo)
 }
 
+# Get the audio features for all tracks from Spotify API. Taking in a specific billboard data file as a parameter.
 tracks_audio_features_data <- function(billboard_data) {
   get_ids <- spotify_data(billboard_data) %>% 
     mutate(id = as.list(id))
@@ -78,6 +86,6 @@ tracks_audio_features_data <- function(billboard_data) {
     mutate(id = as.list(id))
   rownames(track_features_data) <- 1:nrow(track_features_data)
   combined_track_info <- cbind(get_ids, track_features_data, stringsAsFactors = FALSE) 
-  combined_track_info <- combined_track_info[, -5]
+  combined_track_info <- combined_track_info[, c(-5, -2)]
   combined_track_info
 }
