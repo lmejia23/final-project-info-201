@@ -33,21 +33,37 @@ track_ids <- function(name) {
   track_data
 }
 
-combine_data_frames <- function(billboard_data) {
+get_year <- function(year) {
+  billboard <- fromJSON(paste0("years/", year, ".json")) %>% 
+    select(title, artist, num_words, tags)
+  billboard
+}
+
+spotify_data <- function(billboard_data) {
   tracks_info <- as.data.frame(sapply(paste(billboard_data$title, billboard_data$artist), track_ids)) 
   tracks_info <- as.data.frame(t(tracks_info)) %>% 
     mutate(name = as.character(name)) %>% 
     mutate(name = gsub("\\s*\\([^\\)]+\\)", "", name)) %>% 
     mutate(name = gsub("-.*", "", name)) %>% 
     mutate(name = gsub("!", "", name)) %>% 
+    mutate(name = gsub("?", "", name)) %>% 
     mutate(name = gsub("  ", " ", name)) %>% 
     mutate(name = trimws(name)) %>% 
-    mutate(name = toupper(name))
+    mutate(name = toupper(name)) %>% 
+    mutate(popularity = unlist(popularity), duration_ms = unlist(duration_ms))
   rownames(tracks_info) <- 1:nrow(tracks_info)
+  tracks_info
+}
+
+combined_data_frames <- function(billboard_data) {
+  tracks_info <- spotify_data(billboard_data)
   billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
-    mutate(title = gsub("!", "", title))
-  combined_tracks_info <- inner_join(billboard_data, tracks_info, by = c("title" = "name")) %>% 
-    mutate(popularity = unlist(popularity))
+    mutate(title = gsub("!", "", title)) %>% 
+    mutate(title = gsub("?", "", title))
+  combined_tracks_info <- inner_join(billboard_data, tracks_info, by = c("title" = "name")) 
   combined_tracks_info
 }
+
+#y <- group_by(x, year) %>% 
+#  summarize(max_popularity = max(popularity), avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2))
 

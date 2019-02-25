@@ -10,34 +10,44 @@ knitr::opts_chunk$set(echo = TRUE)
 library("knitr")
 source("analysis.R")
 source("billboard_data.R")
-year <- 1997
-song_name <- "I Believe I Can Fly"
-artist_name <- "R. Kelly"
+year <- "2015"
 ```
 
-## Section 2: Billboard Data
+## Section 3: Preliminary Analysis
 
-This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data from spotify data base. 
+This section focuses on further analyzing each data set, providing descriptive statistics and comparative analysis for major features in data sets. 
 
-### First data set: list of Billboard songs
+### First data set: list of Billboard top songs
 
-This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings, which can be found [here](https://www.billboard.com/charts)
-
-Here is a sample of the data set:
+The following analysis is about Billboard top songs, including 
+The table below is an example of Billboard `r year` top songs, which includes song title, artist name, number of words, and genre for each track.
 
 ``` {r billboard data, echo = FALSE}
-billboard <- head(get_year(year))
-kable(billboard, col.names = c("Song Title", "Artist", "Position", "num_words", "genre"))
+billboard_songs <- get_year(year)
+kable(billboard_songs, col.names = c("Song Title", "Artist", "Number of Words", "Genre"))
 ```
 
-Here you can see the song title, the artist of that song, as well as that song's position on the Billboard Top 100 in the year in question, which in this case is `r year`.
+### Second data set: Spotify data for Billboard `r year` top songs
 
-### Second data set: Spotify data for each track
-
-Find the spotify data (track name, popularity [based on the number of streams, the higher that number is, the more popular that song is}, and duration) for each track in the specific `billboard_data` file.
-
-Here is a sample of the data set which presents the track name, popularity, and duration for the track "`r song_name`"" by `r artist_name`:
+The following analysis is about spotify data of Billboard top songs, including the name for each track, the duration of the track, and the popularity of the track.
 
 ```{r spotify data, echo = FALSE}
-kable(track_ids(paste(song_name, artist_name)))
+spotify_year_data <- spotify_data(billboard_songs)
+spotify_data_summary <- spotify_year_data %>% 
+  summarize(max_popularity = max(popularity), avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2))
+max_popularity <- pull(spotify_data_summary, max_popularity)
+avg_popularity <- pull(spotify_data_summary, avg_popularity)
+avg_duration_in_minute <- pull(spotify_data_summary, avg_duration_in_minute)
+kable(spotify_year_data)
+```
+
+For Billboard `r year` top songs, the greatest popularity is `r max_popularity`, average popularity of the track is `r avg_popularity`, and average duration of the track is `r avg_duration_in_minute` minutes.
+
+### Combined data set
+
+
+
+```{r combined data, echo = FALSE}
+combined_data <- combined_data_frames(billboard_songs)
+kable(combined_data)
 ```
