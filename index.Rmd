@@ -5,37 +5,32 @@ date: "February 22, 2019"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ## Visualization One:
 
-This visualization expresses general popularity of genres within a given year. The graphs allow users to see the differences in genre popularity in this snapshot using a bar graph. The data within the graph simply shows a count of total streams of a genre. 
+This visualization expresses and compares the average number of words of all songs in two given years: 2000 and 2010. A bar graph is used to represent this discrete data, and to directly compare the data versus the two years. 
 
 ![Example graphic representation to answer our first inquiry](./graph_one.jpg)
 
+
 ## Visualization Two:
 
-This visualization expresses comparisons of popularity of the top song within a genre in a given year. Again, a bar graph is used to communicate the differences of stream count. 
+This visualization expresses comparisons of average number of words and lyrics per minute of all songs within a year, for a set of years. A bar graph is used to communicate the differences and trends of this average number of words per minute, although a similar representation can be made using a line graph. We chose a bar graph over a line graph because the data is more discrete and not continuous, as a line may suggest; therefore, we thought a bar graph would better represent the data we sought after.  
 
 ![Example graphic representation to answer our second inquiry](./graph_two.jpg)
 
+
 ## Visualization Three:
 
-This visualization expresses in a clear format of trend of number of streams of all music throughout the years. This shows how streaming as a platform of music changes by utilizing a line chart which expresses trends effectively. 
+This visualization expresses how the 5 most popular songs in a year compare with other years with their respective top 5 popular songs. This visualization uses a bar graph as well as it easily represents the popularity of a set of years' most popular songs. 
 
 ![Example graphic representation to answer our third inquiry](./graph_three.jpg)
 
+
 ## Visualization Four:
 
-This visualization expresses comparison of general quality of the top songs within genres. A column graph is utilized here to express comparisons within a genre, and then compared to other genres. 
+This visualization expresses comparison of relative quality (determined by Billboard data set) of two songs in two different time periods. A column graph is utilized here to express comparisons of rhythm, pitch and timbre for the two songs. A column graph is utilized here to express comparisons easily. This visualization also provides a clearer comparison of "energy", which translates to dancibility, loudness, and tempo. 
 
 ![Example graphic representation to answer our fourth and final inquiry](./graph_four.jpg)
+
 
