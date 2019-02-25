@@ -64,8 +64,24 @@ combined_data_frames <- function(billboard_data) {
   combined_tracks_info
 }
 
-single_id <- track_ids("What do you mean Justin Bieber") %>% 
-  pull(id)
-track_analysis <- GET("https://api.spotify.com/v1/audio-features/", query = list(ids = single_id), add_headers(Authorization = auth_header))
-search_result <- fromJSON(content(track_analysis, "text"))
-View(search_result$audio_features)
+get_audio_features <- function(track_ids) {
+  track_analysis <- GET("https://api.spotify.com/v1/audio-features/", query = list(ids = track_ids), add_headers(Authorization = auth_header))
+  features_result <- fromJSON(content(track_analysis, "text"))
+  track_features <- features_result$audio_features %>% 
+    select(id, danceability, energy, loudness, valence, tempo)
+}
+
+tracks_audio_features_data <- function(billboard_data) {
+  get_ids <- spotify_data(billboard_data) %>% 
+    mutate(id = as.list(id))
+  ids <- do.call(rbind.data.frame, get_ids$id) %>% 
+    unlist()
+  track_features_data <- as.data.frame(sapply(ids, get_audio_features))
+  track_features_data <- as.data.frame(t(track_features_data)) %>% 
+    mutate(id = as.list(id))
+  rownames(track_features_data) <- 1:nrow(track_features_data)
+  combined_track_info <- cbind(get_ids, track_features_data, stringsAsFactors = FALSE) 
+  combined_track_info <- combined_track_info[, -5]
+  combined_track_info
+}
+

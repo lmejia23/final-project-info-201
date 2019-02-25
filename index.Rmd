@@ -32,16 +32,12 @@ kable(billboard_songs, col.names = c("Song Title", "Artist", "Number of Words", 
 The following analysis is about spotify data of Billboard top songs, including the name for each track, the duration of the track, and the popularity of the track.
 
 ```{r spotify data, echo = FALSE}
-spotify_year_data <- spotify_data(billboard_songs)
-spotify_data_summary <- spotify_year_data %>% 
-  summarize(max_popularity = max(popularity), avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2))
-max_popularity <- pull(spotify_data_summary, max_popularity)
-avg_popularity <- pull(spotify_data_summary, avg_popularity)
-avg_duration_in_minute <- pull(spotify_data_summary, avg_duration_in_minute)
+spotify_year_data <- tracks_audio_features_data(billboard_songs)
+
 kable(spotify_year_data)
 ```
 
-For Billboard `r year` top songs, the greatest popularity is `r max_popularity`, average popularity of the track is `r avg_popularity`, and average duration of the track is `r avg_duration_in_minute` minutes.
+For Billboard `r year` top songs, the greatest popularity is , average popularity of the track is , and average duration of the track is  minutes.
 
 ### Combined data set
 
