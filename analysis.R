@@ -9,7 +9,7 @@ library(tidyr)
 source("billboard_data.R")
 
 clientID = "68484b6727504e0ea7b98d1c98122c8f"
-secret = "e0954334710c40a88233e4538ef16954"
+secret = "33ea1e3429714dacb1604034d5a59670"
 
 response = POST(
   'https://accounts.spotify.com/api/token',
@@ -56,7 +56,7 @@ spotify_data <- function(billboard_data) {
 }
 
 combined_data_frames <- function(billboard_data) {
-  tracks_info <- tracks_audio_features_data(billboard_data)
+  tracks_info <- spotify_data(billboard_data)
   billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
     mutate(title = gsub("!", "", title)) %>% 
     mutate(title = gsub("?", "", title))
@@ -81,7 +81,6 @@ tracks_audio_features_data <- function(billboard_data) {
     mutate(id = as.list(id))
   rownames(track_features_data) <- 1:nrow(track_features_data)
   combined_track_info <- cbind(get_ids, track_features_data, stringsAsFactors = FALSE) 
-  combined_track_info <- combined_track_info[, c(-5, -2)]
+  combined_track_info <- combined_track_info[, -5]
   combined_track_info
 }
-
