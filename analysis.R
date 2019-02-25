@@ -35,7 +35,7 @@ track_ids <- function(name) {
 
 get_year <- function(year) {
   billboard <- fromJSON(paste0("years/", year, ".json")) %>% 
-    select(title, artist, num_words, tags)
+    select(title, artist, year, num_words, tags)
   billboard
 }
 
@@ -56,7 +56,7 @@ spotify_data <- function(billboard_data) {
 }
 
 combined_data_frames <- function(billboard_data) {
-  tracks_info <- spotify_data(billboard_data)
+  tracks_info <- tracks_audio_features_data(billboard_data)
   billboard_data <- mutate(billboard_data, title = toupper(title)) %>% 
     mutate(title = gsub("!", "", title)) %>% 
     mutate(title = gsub("?", "", title))
@@ -81,7 +81,7 @@ tracks_audio_features_data <- function(billboard_data) {
     mutate(id = as.list(id))
   rownames(track_features_data) <- 1:nrow(track_features_data)
   combined_track_info <- cbind(get_ids, track_features_data, stringsAsFactors = FALSE) 
-  combined_track_info <- combined_track_info[, -5]
+  combined_track_info <- combined_track_info[, c(-5, -2)]
   combined_track_info
 }
 

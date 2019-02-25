@@ -11,39 +11,45 @@ library("knitr")
 source("analysis.R")
 source("billboard_data.R")
 year <- "2015"
+present_num <- 5
 ```
 
 ## Section 3: Preliminary Analysis
 
-This section focuses on further analyzing each data set, providing descriptive statistics and comparative analysis for major features in data sets. 
+This section focuses on further analyzing each data set, providing descriptive statistics and comparative analysis for major features in data sets. (We only take the first `r present_num` rows of the data as a example from each data set for the first four tables)
 
 ### First data set: list of Billboard top songs
 
-The following analysis is about Billboard top songs, including 
-The table below is an example of Billboard `r year` top songs, which includes song title, artist name, number of words, and genre for each track.
+The following analysis is about Billboard top `r present_num` songs. The table below is an example of Billboard `r year` top `r present_num` songs, which includes song title, artist name, number of words, and 
+genre for each track.
 
 ``` {r billboard data, echo = FALSE}
-billboard_songs <- get_year(year)
-kable(billboard_songs, col.names = c("Song Title", "Artist", "Number of Words", "Genre"))
+billboard_songs <- get_year(year) %>% 
+  head(present_num)
+kable(billboard_songs, col.names = c("Song Title", "Artist", "year", "Number of Words", "Genre"))
 ```
 
 ### Second data set: Spotify data for Billboard `r year` top songs
 
-The following analysis is about spotify data of Billboard top songs, including the name for each track, the duration of the track, and the popularity of the track.
+The following analysis is about spotify data of Billboard top `r present_num` songs, including the name, duration, popularity (Calculated based on the total number of plays the track has had and how recent those plays are, a value between 0 and 100, with 100 being the most popular), danceability (How suitable a track is for dancing based on a combination of musical elements, measured from 0.0 to 1.0), energy (Perceptual measure of intensity and activity, measured from 0.0 to 1.0), loudness (The overall loudness of a track in decibels, values range between -60 and 0 db), valence (Describing the musical positiveness conveyed by a track, measured from 0.0 to 1.0), and tempo (The overall estimated tempo of a track in beats per minute) of the track.
 
 ```{r spotify data, echo = FALSE}
 spotify_year_data <- tracks_audio_features_data(billboard_songs)
-
+spotify_data_summary <- spotify_year_data %>% 
+  summarize(avg_popularity = round(mean(popularity)), avg_duration_in_minute = round(mean(duration_ms)/60000, 2), avg_danceability = round(mean(as.numeric(danceability)), 2), avg_energy = round(mean(as.numeric(energy)), 2), avg_loudness = round(mean(as.numeric(loudness)), 2), avg_valence = round(mean(as.numeric(valence)), 2), avg_tempo = round(mean(as.numeric(tempo)), 2))
 kable(spotify_year_data)
+kable(spotify_data_summary)
 ```
 
-For Billboard `r year` top songs, the greatest popularity is , average popularity of the track is , and average duration of the track is  minutes.
+From two tables provided above, we can see that the top `r present_num` songs has an average popularity of `r pull(spotify_data_summary, avg_popularity)`, an average duration of `r pull(spotify_data_summary, avg_duration_in_minute)` minutes, an average danceability of `r pull(spotify_data_summary, avg_danceability)`, an average energy of `r pull(spotify_data_summary, avg_energy)`, an average loudness of `r pull(spotify_data_summary, avg_loudness)` db, an average valence of `r pull(spotify_data_summary, avg_valence)`, as well as an average tempo of `r pull(spotify_data_summary, avg_tempo)` bpm.
 
 ### Combined data set
 
-
+The following section is about the combined data sets (Billboard top `r present_num` songs' data combined with their spotify data). We can get the correlation between song's popularity and its audio features (wwords per second, danceability, energy, loudness, valence, tempo, etc)
 
 ```{r combined data, echo = FALSE}
 combined_data <- combined_data_frames(billboard_songs)
 kable(combined_data)
 ```
+
+What's more, with the combined data, we can also calculate the average popularity of top songs of `r year` and compare it with the other years to get popularity changes over time as well as the other insights on the aggregated data.
