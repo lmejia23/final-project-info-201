@@ -192,90 +192,394 @@ $(document).ready(function () {
 </div>
 
 
-<div id="section-2-billboard-data" class="section level2">
-<h2>Section 2: Billboard Data</h2>
-<p>This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data from spotify data base.</p>
-<div id="first-data-set-list-of-billboard-songs" class="section level3">
-<h3>First data set: list of Billboard songs</h3>
-<p>This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found <a href="https://github.com/kevinschaich/billboard">here</a>. However, the basis of that data set are the actual Billboard rankings, which can be found <a href="https://www.billboard.com/charts">here</a></p>
-<p>Here is a sample of the data set:</p>
+<div id="section-3-preliminary-analysis" class="section level2">
+<h2>Section 3: Preliminary Analysis</h2>
+<p>This section focuses on further analyzing each data set, providing descriptive statistics and comparative analysis for major features in data sets. (We only take the first 5 rows of the data as a example from each data set for the first four tables)</p>
+<div id="first-data-set-list-of-billboard-top-songs" class="section level3">
+<h3>First data set: list of Billboard top songs</h3>
+<p>The following analysis is about Billboard top 5 songs. The table below is an example of Billboard 2015 top 5 songs, which includes song title, artist name, number of words, and genre for each track.</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Song Title</th>
 <th align="left">Artist</th>
-<th align="right">Position</th>
-<th align="right">num_words</th>
-<th align="left">genre</th>
+<th align="right">Year</th>
+<th align="right">Number of Words</th>
+<th align="left">Genre</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">I’ll Be Missing You</td>
-<td align="left">Puff Daddy</td>
-<td align="right">3</td>
-<td align="right">538</td>
-<td align="left">hip-hop</td>
+<td align="left">Uptown Funk!</td>
+<td align="left">Mark Ronson</td>
+<td align="right">2015</td>
+<td align="right">591</td>
+<td align="left">c(“alternative rock”, “dance”, “electropop”, “english”, “funk”, “hip-hop”, “jazz pop”, “pop”, “pop and chart”, “pop soul”, “rock”, “soul”, “synth funk”, “united kingdom”)</td>
 </tr>
 <tr class="even">
-<td align="left">Un-Break My Heart</td>
-<td align="left">Toni Braxton</td>
-<td align="right">4</td>
-<td align="right">291</td>
-<td align="left">c(“hip hop rnb and dance hall”, “pop”, “r&amp;b”)</td>
+<td align="left">Thinking Out Loud</td>
+<td align="left">Ed Sheeran</td>
+<td align="right">2015</td>
+<td align="right">316</td>
+<td align="left">c(“dance-pop”, “folk pop”, “guitarist”, “pop”, “pop rap”, “pop soul”, “rapper”, “singer”, “singer/songwriter”, “uk”)</td>
 </tr>
 <tr class="odd">
-<td align="left">Can’t Nobody Hold Me Down</td>
-<td align="left">Puff Daddy</td>
-<td align="right">5</td>
-<td align="right">665</td>
-<td align="left">hip-hop</td>
+<td align="left">See You Again</td>
+<td align="left">Wiz Khalifa</td>
+<td align="right">2015</td>
+<td align="right">406</td>
+<td align="left">c(“hip hop”, “hip hop rnb and dance hall”, “pop rap”, “rap”)</td>
 </tr>
 <tr class="even">
-<td align="left">I Believe I Can Fly</td>
-<td align="left">R. Kelly</td>
-<td align="right">6</td>
-<td align="right">339</td>
-<td align="left">c(“american”, “contemporary r&amp;b”, “hip hop rnb and dance hall”, “hip-hop”, “neo soul”, “new jack swing”, “pop”, “pop rap”, “r&amp;b”, “rnb”, “soul”)</td>
+<td align="left">Trap Queen</td>
+<td align="left">Fetty Wap</td>
+<td align="right">2015</td>
+<td align="right">528</td>
+<td align="left">c(“contemporary r&amp;b”, “pop rap”, “trap rap”)</td>
 </tr>
 <tr class="odd">
-<td align="left">Don’t Let Go</td>
-<td align="left">En Vogue</td>
-<td align="right">7</td>
-<td align="right">393</td>
-<td align="left">hip hop rnb and dance hall</td>
-</tr>
-<tr class="even">
-<td align="left">Return Of The Mack</td>
-<td align="left">Mark Morrison</td>
-<td align="right">8</td>
-<td align="right">480</td>
-<td align="left">c(“british”, “english”, “hip hop rnb and dance hall”, “uk”)</td>
+<td align="left">Sugar</td>
+<td align="left">Maroon 5</td>
+<td align="right">2015</td>
+<td align="right">447</td>
+<td align="left">c(“adult contemporary”, “automod ng”, “dance”, “dance-pop”, “electropop”, “fixme label mess”, “funk rock”, “pop”, “pop rock”, “pop/rock”, “rock”, “rock and indie”, “slow pop”)</td>
 </tr>
 </tbody>
 </table>
-<p>Here you can see the song title, the artist of that song, as well as that song’s position on the Billboard Top 100 in the year in question, which in this case is 1997.</p>
 </div>
-<div id="second-data-set-spotify-data-for-each-track" class="section level3">
-<h3>Second data set: Spotify data for each track</h3>
-<p>Find the spotify data (track name, popularity [based on the number of streams, the higher that number is, the more popular that song is}, and duration) for each track in the specific <code>billboard_data</code> file.</p>
-<p>Here is a sample of the data set which presents the track name, popularity, and duration for the track “I Believe I Can Fly”&quot; by R. Kelly:</p>
+<div id="second-data-set-spotify-data-for-billboard-2015-top-songs" class="section level3">
+<h3>Second data set: Spotify data for Billboard 2015 top songs</h3>
+<p>The following analysis is about spotify data of Billboard top 5 songs, including the name, duration, popularity (Calculated based on the total number of plays the track has had and how recent those plays are, a value between 0 and 100, with 100 being the most popular), danceability (How suitable a track is for dancing based on a combination of musical elements, measured from 0.0 to 1.0), energy (Perceptual measure of intensity and activity, measured from 0.0 to 1.0), loudness (The overall loudness of a track in decibels, values range between -60 and 0 db), valence (Describing the musical positiveness conveyed by a track, measured from 0.0 to 1.0), and tempo (The overall estimated tempo of a track in beats per minute) of the track.</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">name</th>
+<th align="left">id</th>
+<th align="right">duration_ms</th>
+<th align="right">popularity</th>
+<th align="left">danceability</th>
+<th align="left">energy</th>
+<th align="left">loudness</th>
+<th align="left">valence</th>
+<th align="left">tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UPTOWN FUNK</td>
+<td align="left">32OlwWuMpZ6b0aN2RZOeMS</td>
+<td align="right">269666</td>
+<td align="right">81</td>
+<td align="left">0.856</td>
+<td align="left">0.609</td>
+<td align="left">-7.223</td>
+<td align="left">0.928</td>
+<td align="left">114.988</td>
+</tr>
+<tr class="even">
+<td align="left">THINKING OUT LOUD</td>
+<td align="left">34gCuhDGsG4bRPIf9bb02f</td>
+<td align="right">281560</td>
+<td align="right">84</td>
+<td align="left">0.781</td>
+<td align="left">0.445</td>
+<td align="left">-6.061</td>
+<td align="left">0.591</td>
+<td align="left">78.998</td>
+</tr>
+<tr class="odd">
+<td align="left">SEE YOU AGAIN</td>
+<td align="left">2JzZzZUQj3Qff7wapcbKjc</td>
+<td align="right">229525</td>
+<td align="right">79</td>
+<td align="left">0.689</td>
+<td align="left">0.481</td>
+<td align="left">-7.503</td>
+<td align="left">0.283</td>
+<td align="left">80.025</td>
+</tr>
+<tr class="even">
+<td align="left">TRAP QUEEN</td>
+<td align="left">2d8JP84HNLKhmd6IYOoupQ</td>
+<td align="right">222093</td>
+<td align="right">73</td>
+<td align="left">0.746</td>
+<td align="left">0.873</td>
+<td align="left">-3.803</td>
+<td align="left">0.817</td>
+<td align="left">148.075</td>
+</tr>
+<tr class="odd">
+<td align="left">SUGAR</td>
+<td align="left">2iuZJX9X9P0GKaE93xcPjk</td>
+<td align="right">235493</td>
+<td align="right">79</td>
+<td align="left">0.748</td>
+<td align="left">0.788</td>
+<td align="left">-7.055</td>
+<td align="left">0.884</td>
+<td align="left">120.076</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="right">avg_popularity</th>
+<th align="right">avg_duration_in_minute</th>
+<th align="right">avg_danceability</th>
+<th align="right">avg_energy</th>
+<th align="right">avg_loudness</th>
+<th align="right">avg_valence</th>
+<th align="right">avg_tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">79</td>
+<td align="right">4.13</td>
+<td align="right">0.76</td>
+<td align="right">0.64</td>
+<td align="right">-6.33</td>
+<td align="right">0.7</td>
+<td align="right">108.43</td>
+</tr>
+</tbody>
+</table>
+<p>From two tables provided above, we can see that the top 5 songs has an average popularity of 79, an average duration of 4.13 minutes, an average danceability of 0.76, an average energy of 0.64, an average loudness of -6.33 db, an average valence of 0.7, as well as an average tempo of 108.43 bpm.</p>
+</div>
+<div id="combined-data-set" class="section level3">
+<h3>Combined data set</h3>
+<p>The following section is about the combined data sets (Billboard top 5 songs’ data combined with their spotify data). We can get the correlation between song’s popularity and its audio features (wwords per second, danceability, energy, loudness, valence, tempo, etc)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">title</th>
+<th align="left">artist</th>
+<th align="right">year</th>
+<th align="right">num_words</th>
+<th align="left">tags</th>
+<th align="left">id</th>
 <th align="right">duration_ms</th>
 <th align="right">popularity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">I Believe I Can Fly</td>
-<td align="right">320666</td>
-<td align="right">62</td>
+<td align="left">UPTOWN FUNK</td>
+<td align="left">Mark Ronson</td>
+<td align="right">2015</td>
+<td align="right">591</td>
+<td align="left">c(“alternative rock”, “dance”, “electropop”, “english”, “funk”, “hip-hop”, “jazz pop”, “pop”, “pop and chart”, “pop soul”, “rock”, “soul”, “synth funk”, “united kingdom”)</td>
+<td align="left">32OlwWuMpZ6b0aN2RZOeMS</td>
+<td align="right">269666</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">THINKING OUT LOUD</td>
+<td align="left">Ed Sheeran</td>
+<td align="right">2015</td>
+<td align="right">316</td>
+<td align="left">c(“dance-pop”, “folk pop”, “guitarist”, “pop”, “pop rap”, “pop soul”, “rapper”, “singer”, “singer/songwriter”, “uk”)</td>
+<td align="left">34gCuhDGsG4bRPIf9bb02f</td>
+<td align="right">281560</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="left">SEE YOU AGAIN</td>
+<td align="left">Wiz Khalifa</td>
+<td align="right">2015</td>
+<td align="right">406</td>
+<td align="left">c(“hip hop”, “hip hop rnb and dance hall”, “pop rap”, “rap”)</td>
+<td align="left">2JzZzZUQj3Qff7wapcbKjc</td>
+<td align="right">229525</td>
+<td align="right">79</td>
+</tr>
+<tr class="even">
+<td align="left">TRAP QUEEN</td>
+<td align="left">Fetty Wap</td>
+<td align="right">2015</td>
+<td align="right">528</td>
+<td align="left">c(“contemporary r&amp;b”, “pop rap”, “trap rap”)</td>
+<td align="left">2d8JP84HNLKhmd6IYOoupQ</td>
+<td align="right">222093</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="left">SUGAR</td>
+<td align="left">Maroon 5</td>
+<td align="right">2015</td>
+<td align="right">447</td>
+<td align="left">c(“adult contemporary”, “automod ng”, “dance”, “dance-pop”, “electropop”, “fixme label mess”, “funk rock”, “pop”, “pop rock”, “pop/rock”, “rock”, “rock and indie”, “slow pop”)</td>
+<td align="left">2iuZJX9X9P0GKaE93xcPjk</td>
+<td align="right">235493</td>
+<td align="right">79</td>
 </tr>
 </tbody>
 </table>
+<p>What’s more, with the combined data, we can also calculate the average popularity of top songs of 2015 and compare it with the other years to get popularity changes over time as well as the other insights on the aggregated data.</p>
+</div>
+</div>
+<div id="answer-to-the-section-1.1-questions" class="section level2">
+<h2>Answer to the section 1.1 questions</h2>
+<div id="question-1" class="section level4">
+<h4>Question 1</h4>
+<p>For our first question, we asked how the total number of words in songs from one year to the other compare. In the following data table, we show the year in question, as well as the average number of words of each song in the Billboard Top 100 that year.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Year</th>
+<th align="right">Average Number of Words (of songs)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2010</td>
+<td align="right">448.2439</td>
+</tr>
+<tr class="even">
+<td align="right">2015</td>
+<td align="right">411.8947</td>
+</tr>
+</tbody>
+</table>
+<p>From the data table, we can see that the average number of words decreased by 36.35. From this, we can conclude that perhaps songs that have less lyrics became more popular from 2010 to 2015.</p>
+</div>
+<div id="question-2" class="section level4">
+<h4>Question 2</h4>
+<p>For our second question, to sort of build on question 1, we asked how the average number of words per minute changed throughout the years. In the following data table, you can see the year of queried information followed by the average words per second of all the Billboard top 100 songs from that year:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Year</th>
+<th align="right">Average Words per Second (of songs)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1980</td>
+<td align="right">1.054758</td>
+</tr>
+<tr class="even">
+<td align="right">1990</td>
+<td align="right">1.289756</td>
+</tr>
+<tr class="odd">
+<td align="right">2000</td>
+<td align="right">1.514383</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">1.964093</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">1.876161</td>
+</tr>
+</tbody>
+</table>
+<p>Using the information from this data frame, it’s easy to see how the average words per second progress from year to year. There is a pretty strong correlation indicating that as time passes, songs become wordier. This could be happening for a multitude of reasons, but we suspect that the main reason this is happening is the surge of rap and hip-hop music becoming more popular in the past 15 years. In addition, we can also see that there was a slight decline of wordiness from 2010 to 2015, holding with our observation from the previous question that perhaps less wordy songs are making a comeback.</p>
+</div>
+<div id="question-3" class="section level4">
+<h4>Question 3</h4>
+<p>Our third question is in regard to how the popularity of songs from certain years compare to songs from other years. In order to do this, we’ll use the Spotify metric “Popularity”, as applied to the Billboard top 100 lists from a few choice years. The Popularity metric is described as follows: <em>“The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are. Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played a lot in the past.”</em> In order to answer this, we constructed the following table, containing the years in question, as well as the average Popularity value of all of the Billboard top 100 songs from that year:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Year</th>
+<th align="right">Average Popularity (of songs)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1980</td>
+<td align="right">48.46377</td>
+</tr>
+<tr class="even">
+<td align="right">1990</td>
+<td align="right">51.62500</td>
+</tr>
+<tr class="odd">
+<td align="right">2000</td>
+<td align="right">55.82540</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">62.48780</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">70.43421</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the data, we can see that more recent songs have a higher overall popularity based on Spotify’s algorithm. This makes a decent amount of sense, as it only seems natural that songs would gradually fade into being less popular after having been around for so many years.</p>
+</div>
+<div id="question-4" class="section level4">
+<h4>Question 4</h4>
+<p>For our fourth question, we moved to a more musically intensive point of view. We wanted to see how different musical statistics varied throughout the years. In the following data frame, we analyze numerous musical elements, defined here (definitions provided by the <a href="https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/">Spotify API</a>:</p>
+<ul>
+<li><strong>Danceability</strong> : Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</li>
+<li><strong>Energy</strong> : Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale.</li>
+<li><strong>Loudness</strong> : The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Values typically range between -60 and 0 db</li>
+<li><strong>Valence</strong> : A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</li>
+<li><strong>Tempo</strong> : The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Year</th>
+<th align="right">Average Danceability</th>
+<th align="right">Average Energy</th>
+<th align="right">Average Loudness</th>
+<th align="right">Average Valence</th>
+<th align="right">Average Tempo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1980</td>
+<td align="right">0.5928333</td>
+<td align="right">0.5445778</td>
+<td align="right">-10.959181</td>
+<td align="right">0.6073833</td>
+<td align="right">125.2636</td>
+</tr>
+<tr class="even">
+<td align="right">1990</td>
+<td align="right">0.6289091</td>
+<td align="right">0.6535455</td>
+<td align="right">-8.816143</td>
+<td align="right">0.5704805</td>
+<td align="right">117.9597</td>
+</tr>
+<tr class="odd">
+<td align="right">2000</td>
+<td align="right">0.6675538</td>
+<td align="right">0.6962769</td>
+<td align="right">-6.381323</td>
+<td align="right">0.6187738</td>
+<td align="right">121.7878</td>
+</tr>
+<tr class="even">
+<td align="right">2010</td>
+<td align="right">0.6305732</td>
+<td align="right">0.7493415</td>
+<td align="right">-5.101085</td>
+<td align="right">0.5680000</td>
+<td align="right">118.8340</td>
+</tr>
+<tr class="odd">
+<td align="right">2015</td>
+<td align="right">0.6482368</td>
+<td align="right">0.6569342</td>
+<td align="right">-6.175066</td>
+<td align="right">0.4986842</td>
+<td align="right">122.1656</td>
+</tr>
+</tbody>
+</table>
+<p>Using this data, it’s easy to see how music has changed throughout the years, with the changes in these statistics reflecting the shifts in popular genres as the years have gone by.</p>
 </div>
 </div>
 
