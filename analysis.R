@@ -1,10 +1,10 @@
-# Main program script
-
 # Section 2
+
 library(httr)
 library("jsonlite")
 library(dplyr)
 library(tidyr)
+
 source("billboard_data.R")
 
 clientID = "68484b6727504e0ea7b98d1c98122c8f"
@@ -32,6 +32,13 @@ track_ids <- function(name) {
   track_data
 }
 
+get_year <- function(year) {
+  billboard <- fromJSON(paste0("years/", year, ".json"))
+  billboard <- billboard[1:50, ]
+  billboard <- select(billboard, title, artist, pos, num_words, tags)
+  billboard
+}
+
 combine_data_frames <- function(billboard_data) {
   tracks_info <- as.data.frame(sapply(paste(billboard_data$title, billboard_data$artist), track_ids)) 
   tracks_info <- as.data.frame(t(tracks_info)) %>% 
@@ -49,4 +56,3 @@ combine_data_frames <- function(billboard_data) {
     mutate(popularity = unlist(popularity))
   combined_tracks_info
 }
-

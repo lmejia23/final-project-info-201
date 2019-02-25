@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library("knitr")
 source("analysis.R")
-source("billboard_data.R")
 year <- 1997
 song_name <- "I Believe I Can Fly"
 artist_name <- "R. Kelly"
@@ -17,27 +16,40 @@ artist_name <- "R. Kelly"
 
 ## Section 2: Billboard Data
 
-This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data from spotify data base. 
+This section focuses on data collected by Billboard, a collection of the most popular U.S songs from 1950 to 2015, as well as their corresponding data (e.g. track name, popularity and duration) from the Spotify data base. 
 
-### First data set: list of Billboard songs
+### First data set: List of Billboard songs
 
-This specific data-set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings, which can be found [here](https://www.billboard.com/charts)
+This specific data set was collected by Juhee Lee, Yinan Wen, and Kevin Schaich, and can be found [here](https://github.com/kevinschaich/billboard). However, the basis of that data set are the actual Billboard rankings for a given year, which can be found [here](https://www.billboard.com/charts).
 
-Here is a sample of the data set:
+Sample of Billboards Top 100 data set in `r year`:
 
 ``` {r billboard data, echo = FALSE}
 billboard <- head(get_year(year))
-kable(billboard, col.names = c("Song Title", "Artist", "Position", "num_words", "genre"))
+kable(billboard, col.names = c("Song Title", "Artist", "Position", "number of words", "genre"))
 ```
 
-Here you can see the song title, the artist of that song, as well as that song's position on the Billboard Top 100 in the year in question, which in this case is `r year`.
+The table provides:
 
-### Second data set: Spotify data for each track
+- **Song title** - The name of the song.
+- **Artist** - The person who produced the song.
+- **Position** - The songs position (from 1 to 100) on the Billboards Top 100 list in a given year.
+- **Number of words** - The number of words, also known as lyrics, the songs contains. 
+- **Genre** - The category of artistic, musical, or literary composition characterized by a particular style the song falls in. At times the song can fall into multiple genres which wil be presented as c().
 
-Find the spotify data (track name, popularity [based on the number of streams, the higher that number is, the more popular that song is}, and duration) for each track in the specific `billboard_data` file.
 
-Here is a sample of the data set which presents the track name, popularity, and duration for the track "`r song_name`"" by `r artist_name`:
+### Second data set: Spotify data for a particular song
+
+This specific data set was collected by Spotify which can be found [here](https://developer.spotify.com/documentation/web-api/reference/search/search/). We will find the Spotify data for each track in the specific `billboard_data` file.
+
+Here is a sample of the data set for the track "`r song_name`" by `r artist_name`:
 
 ```{r spotify data, echo = FALSE}
 kable(track_ids(paste(song_name, artist_name)))
 ```
+
+The table provides:
+
+- **Name** - The name of the song.
+- **Duration_ms** - How long (time) the song is presented in milliseconds.
+- **Popularity** - Popularity is based on the number of streams. The higher the number of streams is, the more popular that song is.
