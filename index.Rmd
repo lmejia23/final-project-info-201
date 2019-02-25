@@ -15,16 +15,27 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
-```
+## Visualization One:
 
-## Including Plots
+This visualization expresses general popularity of genres within a given year. The graphs allow users to see the differences in genre popularity in this snapshot using a bar graph. The data within the graph simply shows a count of total streams of a genre. 
 
-You can also embed plots, for example:
+![Example graphic representation to answer our first inquiry](./graph_one.jpg)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+## Visualization Two:
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+This visualization expresses comparisons of popularity of the top song within a genre in a given year. Again, a bar graph is used to communicate the differences of stream count. 
+
+![Example graphic representation to answer our second inquiry](./graph_two.jpg)
+
+## Visualization Three:
+
+This visualization expresses in a clear format of trend of number of streams of all music throughout the years. This shows how streaming as a platform of music changes by utilizing a line chart which expresses trends effectively. 
+
+![Example graphic representation to answer our third inquiry](./graph_three.jpg)
+
+## Visualization Four:
+
+This visualization expresses comparison of general quality of the top songs within genres. A column graph is utilized here to express comparisons within a genre, and then compared to other genres. 
+
+![Example graphic representation to answer our fourth and final inquiry](./graph_four.jpg)
+
