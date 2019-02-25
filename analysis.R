@@ -35,7 +35,7 @@ track_ids <- function(name) {
 
 get_year <- function(year) {
   billboard <- fromJSON(paste0("years/", year, ".json")) %>% 
-    select(title, artist, num_words, tags)
+    select(title, artist, year, num_words, tags)
   billboard
 }
 
