@@ -311,3 +311,34 @@ kable(total_avg_stats, col.names = c("Year", "Average Danceability", "Average En
 ```
 
 Using this data, it's easy to see how music has changed throughout the years, with the changes in these statistics reflecting the shifts in popular genres as the years have gone by.
+
+## Section 4
+
+## Visualization One:
+
+This visualization expresses and compares the average number of words of all songs in two given years: 2000 and 2010. A bar graph is used to represent this discrete data, and to directly compare the data versus the two years. 
+
+![Example graphic representation to answer our first inquiry](./graph_one.jpg)
+
+
+## Visualization Two:
+
+This visualization expresses comparisons of average number of words and lyrics per minute of all songs within a year, for a set of years. A bar graph is used to communicate the differences and trends of this average number of words per minute, although a similar representation can be made using a line graph. We chose a bar graph over a line graph because the data is more discrete and not continuous, as a line may suggest; therefore, we thought a bar graph would better represent the data we sought after.  
+
+![Example graphic representation to answer our second inquiry](./graph_two.jpg)
+
+
+## Visualization Three:
+
+This visualization expresses how the 5 most popular songs in a year compare with other years with their respective top 5 popular songs. This visualization uses a bar graph as well as it easily represents the popularity of a set of years' most popular songs. 
+
+![Example graphic representation to answer our third inquiry](./graph_three.jpg)
+
+
+## Visualization Four:
+
+This visualization expresses comparison of relative quality (determined by Billboard data set) of two songs in two different time periods. A column graph is utilized here to express comparisons of rhythm, pitch and timbre for the two songs. A column graph is utilized here to express comparisons easily. This visualization also provides a clearer comparison of "energy", which translates to dancibility, loudness, and tempo. 
+
+![Example graphic representation to answer our fourth and final inquiry](./graph_four.jpg)
+
+
