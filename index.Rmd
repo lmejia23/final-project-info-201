@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("knitr")
+library(dplyr)
 source("analysis.R")
 song_name <- "I Believe I Can Fly"
 artist_name <- "R. Kelly"
