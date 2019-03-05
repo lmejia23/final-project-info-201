@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("knitr")
+library(ggplot2)
 source("analysis.R")
 song_name <- "I Believe I Can Fly"
 artist_name <- "R. Kelly"
@@ -149,6 +150,8 @@ billboard1_15_new <- summarize(
 )
 get_avg_words <- rbind(billboard1_10_new, billboard1_15_new, stringsAsFactors = FALSE)
 kable(get_avg_words, col.names = c("Year", "Average Number of Words (of songs)"))
+ggplot(get_avg_words) +
+  geom_col(mapping = aes(x = year, y = avg_words, fill = "#e3bb15"))
 ```
 
 From the data table, we can see that the average number of words decreased by `r round(max(get_avg_words$avg_words) - min(get_avg_words$avg_words), 2)`. From this, we can conclude that perhaps songs that have less lyrics became more popular from 2010 to 2015.
@@ -193,6 +196,10 @@ billboard2_15_sum <- summarize(
 )
 total_avg_words <- rbind(billboard2_80_sum, billboard2_90_sum, billboard2_00_sum, billboard2_10_sum, billboard2_15_sum, stringsAsFactors = FALSE)
 kable(total_avg_words, col.names = c("Year", "Average Words per Second (of songs)"))
+
+ggplot(total_avg_words) +
+  geom_point(mapping = aes(x = year, y = avg_words_sec)) + 
+  geom_path(mapping = aes(x = year, y = avg_words_sec, color = "#e3bb15"))
 ```
 
 Using the information from this data frame, it's easy to see how the average words per second progress from year to year. There is a pretty strong correlation indicating that as time passes, songs become wordier. This could be happening for a multitude of reasons, but we suspect that the main reason this is happening is the surge of rap and hip-hop music becoming more popular in the past 15 years. In addition, we can also see that there was a slight decline of wordiness from 2010 to 2015, holding with our observation from the previous question that perhaps less wordy songs are making a comeback. 
@@ -230,6 +237,11 @@ billboard3_15_sum <- summarize(
 )
 total_avg_pop <- rbind(billboard3_80_sum, billboard3_90_sum, billboard3_00_sum, billboard3_10_sum, billboard3_15_sum, stringsAsFactors = FALSE)
 kable(total_avg_pop, col.names = c("Year", "Average Popularity (of songs)"))
+
+ggplot(total_avg_pop) +
+  geom_point(mapping = aes(x = year, y = avg_pop)) + 
+  geom_path(mapping = aes(x = year, y = avg_pop, color = "#e3bb15"))
+
 ```
 
 Based on the data, we can see that more recent songs have a higher overall popularity based on Spotify's algorithm. This makes a decent amount of sense, as it only seems natural that songs would gradually fade into being less popular after having been around for so many years. 
