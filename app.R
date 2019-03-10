@@ -5,7 +5,7 @@ library(markdown)
 
 my_ui <- navbarPage(
   "Spotify Data",
-  tabPanel("About"),
+  tabPanel("About", includeMarkdown("about_tab.Rmd")),
   tabPanel("Analysis",
     tabsetPanel(type = "tabs",
       tabPanel("2 Years",
