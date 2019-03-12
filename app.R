@@ -3,11 +3,11 @@ library(ggplot2)
 library(dplyr)
 library(markdown)
 
-year_data <- read.csv("FinalProjectData.csv")
+year_data <- read.csv("final_project_data.csv")
 
 my_ui <- navbarPage(
   "Spotify Data",
-  tabPanel("About"),
+  tabPanel("About", includeMarkdown("about_tab.Rmd")),
   tabPanel(
     "Analysis",
     tabsetPanel(
