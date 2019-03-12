@@ -34,7 +34,6 @@ track_ids <- function(name) {
     track_data
   }
 }
-# track_ids("quit losaws")
 
 # Get specific year's billboard top songs data. Taking in the specific year as the parameter.
 get_year <- function(year) {
