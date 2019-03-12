@@ -279,7 +279,7 @@ my_server <- function(input, output) {
   }, height = 550, width = 900)
   
   output$table <- renderTable({
-    validate(
+    shiny::validate(
       need(input$songTitle, "Please choose a song title"),
       need(input$artistName, "Please choose an artist")
     )
