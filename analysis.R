@@ -3,8 +3,6 @@ library("jsonlite")
 library(dplyr)
 library(tidyr)
 
-source("billboard_data.R")
-
 # Get the key for accessing Spotify API
 
 clientID = "68484b6727504e0ea7b98d1c98122c8f"
@@ -25,18 +23,23 @@ auth_header = paste0('Bearer ', key)
 
 # Get single track's name, id, duration, popularity information from Spotify API. Taking in a track's info (track's name and the artist), return the information of the track in a data frame.
 track_ids <- function(name) {
-  search_tracks <- GET("https://api.spotify.com/v1/search", query = list(q = name, type = "track"), add_headers(Authorization = auth_header)) 
+  search_tracks <- GET("https://api.spotify.com/v1/search", query = list(q = name, type = "track"), add_headers(Authorization = auth_header))
   search_tracks_data <- fromJSON(content(search_tracks, "text"))
   track_data <- search_tracks_data$tracks$items %>% 
-    head(1) %>% 
-    select(name, id, duration_ms, popularity)
-  track_data
+    head(1)
+  if (length(track_data) == 0) { 
+    stop("The track you are looking for does not exist!")
+  } else {
+    track_data <- select(track_data, name, id, duration_ms, popularity)
+    track_data
+  }
 }
+# track_ids("quit losaws")
 
 # Get specific year's billboard top songs data. Taking in the specific year as the parameter.
 get_year <- function(year) {
   billboard <- fromJSON(paste0("years/", year, ".json")) %>% 
-    select(title, artist, year, num_words, tags)
+    select(title, artist, year, num_words)
   billboard
 }
 
@@ -56,6 +59,16 @@ spotify_data <- function(billboard_data) {
   rownames(tracks_info) <- 1:nrow(tracks_info)
   tracks_info
 }
+
+single_track_analysis <- function(title, artist) {
+  name <- paste(title, artist)
+  track_id <- track_ids(name)
+  audio_analysis <- get_audio_features(track_id$id)
+  audio_analysis %>% 
+    select(-id)
+}
+
+# single_track_analysis("Where are ü now", "Jack ü")
 
 # Combine the billboard data from specific billboard data file with its corresponding Spotify data. Taking in a specific billboard data file as a parameter.
 combined_data_frames <- function(billboard_data) {
@@ -88,4 +101,10 @@ tracks_audio_features_data <- function(billboard_data) {
   combined_track_info <- cbind(get_ids, track_features_data, stringsAsFactors = FALSE) 
   combined_track_info <- combined_track_info[, c(-5, -2)]
   combined_track_info
+}
+
+combined_year_data <- function(billboard_songs) {
+  spotify_year_data <- tracks_audio_features_data(billboard_songs)
+  combined_data <- combined_data_frames(billboard_songs) %>% 
+    left_join(spotify_year_data, by = c("title" = "name", "duration_ms", "popularity"))
 }
