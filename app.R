@@ -9,7 +9,7 @@ source("analysis.R")
 year_data <- read.csv("final_project_data.csv")
 
 my_ui <- navbarPage(
-  "Spotify Data",
+  "",
   tabPanel("About", includeMarkdown("about_tab.Rmd")),
   tabPanel(
     "Analysis",
@@ -111,7 +111,8 @@ my_ui <- navbarPage(
           inputId =
             "artistName",
           label = "Artist Name"
-        )
+        ),
+        includeMarkdown("searchFuncDescriptions.md")
       ),
       mainPanel(
         tabsetPanel(
