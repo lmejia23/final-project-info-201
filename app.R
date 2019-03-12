@@ -2,6 +2,9 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(markdown)
+library("jsonlite")
+
+source("analysis.R")
 
 year_data <- read.csv("final_project_data.csv")
 

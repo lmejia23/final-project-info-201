@@ -108,3 +108,4 @@ combined_year_data <- function(billboard_songs) {
   combined_data <- combined_data_frames(billboard_songs) %>% 
     left_join(spotify_year_data, by = c("title" = "name", "duration_ms", "popularity"))
 }
+
