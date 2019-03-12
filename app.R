@@ -62,7 +62,7 @@ my_ui <- navbarPage(
           mainPanel(
             tabsetPanel(
               type = "tabs",
-              tabPanel("Plot", plotOutput("my_plot")),
+              tabPanel("Plot", plotOutput("my_plot"), textOutput("test")),
               tabPanel("Summary", tableOutput("summary")),
               tabPanel("Total Data Table", tableOutput("total_data")),
               tabPanel("Statistical Summary", verbatimTextOutput("adv_summary"))
@@ -102,18 +102,21 @@ my_ui <- navbarPage(
     "Song Search",
     sidebarLayout(
       sidebarPanel(
-        textInput(inputId = 
-                    "songTitle",
-                  label = "Song Title"
+        textInput(
+          inputId =
+            "songTitle",
+          label = "Song Title"
         ),
-        textInput(inputId = 
-                    "artistName",
-                  label = "Artist Name"
+        textInput(
+          inputId =
+            "artistName",
+          label = "Artist Name"
         )
       ),
       mainPanel(
-        tabsetPanel(id = "tab", type = "tabs",
-                    tabPanel("Audio Analysis", div(tableOutput("table"), style = "font-size:275%"))
+        tabsetPanel(
+          id = "tab", type = "tabs",
+          tabPanel("Audio Analysis", div(tableOutput("table"), style = "font-size:275%"))
         )
       )
     )
@@ -121,6 +124,14 @@ my_ui <- navbarPage(
 )
 
 my_server <- function(input, output) {
+  output$test <- renderText({
+    if (input$feature == "Popularity") {
+      "lol"
+    } else {
+      "lmao"
+    }
+  })
+
   output$summary2 <- renderTable({
     final_data <- year_data[FALSE, ]
     for (i in 0:(input$range[2] - input$range[1])) {
@@ -225,7 +236,7 @@ my_server <- function(input, output) {
     total_sum <- rbind(year1, year2, stringsAsFactors = FALSE)
     total_sum
   })
-  
+
   output$adv_summary <- renderPrint({
     year_data1 <- year_data %>% filter(year == input$year1)
     year_data2 <- year_data %>% filter(year == input$year2)
@@ -277,7 +288,7 @@ my_server <- function(input, output) {
       )
     p
   }, height = 550, width = 900)
-  
+
   output$table <- renderTable({
     validate(
       need(input$songTitle, "Please choose a song title"),
