@@ -84,7 +84,7 @@ my_ui <- fluidPage(
                 label = h3("Select Feature of Interest"),
                 choices = list(
                   "Popularity" = "Popularity", "Danceability" = "Danceability", "Energy" = "Energy",
-                  "Loudness" = "Loudness", "Valence" = "Valence", "Tempo" = "Tempo", "WordsPerSecond" = "Words_Per_Second"
+                  "Loudness" = "Loudness", "Valence" = "Valence", "Tempo" = "Tempo", "Words_Per_Second" = "Words_Per_Second"
                 ),
                 selected = "Popularity"
               ),
