@@ -3,7 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(markdown)
 
-year_data <- read.csv("FinalProjectData.csv")
+year_data <- read.csv("final_project_data.csv")
 
 my_ui <- navbarPage(
   "Spotify Data",
@@ -95,7 +95,26 @@ my_ui <- navbarPage(
       )
     )
   ),
-  tabPanel("Song Search")
+  tabPanel(
+    "Song Search",
+    sidebarLayout(
+      sidebarPanel(
+        textInput(inputId = 
+                    "songTitle",
+                  label = "Song Title"
+        ),
+        textInput(inputId = 
+                    "artistName",
+                  label = "Artist Name"
+        )
+      ),
+      mainPanel(
+        tabsetPanel(id = "tab", type = "tabs",
+                    tabPanel("Audio Analysis", div(tableOutput("table"), style = "font-size:275%"))
+        )
+      )
+    )
+  )
 )
 
 my_server <- function(input, output) {
@@ -255,6 +274,14 @@ my_server <- function(input, output) {
       )
     p
   }, height = 550, width = 900)
+  
+  output$table <- renderTable({
+    validate(
+      need(input$songTitle, "Please choose a song title"),
+      need(input$artistName, "Please choose an artist")
+    )
+    single_track_analysis(input$songTitle, input$artistName)
+  })
 }
 
 shinyApp(ui = my_ui, server = my_server)
