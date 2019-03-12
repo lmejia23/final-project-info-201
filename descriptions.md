@@ -11,3 +11,5 @@ Choose between the following attributes to compare years of music, defined here 
 - **Valence** : A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
 
 - **Tempo** : The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
+
+- **Words Per Second** : The rate of words per second in the song lyrics of the particular song, with wordier songs having a higher occurrence of words per second. 
