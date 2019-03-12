@@ -186,7 +186,8 @@ my_server <- function(input, output) {
       ) +
       theme(
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black")
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        text = element_text(size = 20)
       )
     p
   }, height = 550, width = 900)
@@ -289,7 +290,8 @@ my_server <- function(input, output) {
       ) +
       theme(
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black")
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        text = element_text(size = 20)
       )
     p
   }, height = 550, width = 900)
