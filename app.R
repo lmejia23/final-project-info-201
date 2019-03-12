@@ -2,11 +2,13 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(markdown)
-library("jsonlite")
+#library("jsonlite")
 
 source("analysis.R")
 
 year_data <- read.csv("final_project_data.csv")
+
+#single_track_analysis("umbrella", "rihanna")
 
 my_ui <- navbarPage(
   "Spotify Data",
@@ -62,7 +64,7 @@ my_ui <- navbarPage(
           mainPanel(
             tabsetPanel(
               type = "tabs",
-              tabPanel("Plot", plotOutput("my_plot"), textOutput("test")),
+              tabPanel("Plot", plotOutput("my_plot")),
               tabPanel("Summary", tableOutput("summary")),
               tabPanel("Total Data Table", tableOutput("total_data")),
               tabPanel("Statistical Summary", verbatimTextOutput("adv_summary"))
@@ -88,7 +90,7 @@ my_ui <- navbarPage(
           mainPanel(
             tabsetPanel(
               type = "tabs",
-              tabPanel("Plot", plotOutput("plot2")),
+              tabPanel("Plot", plotOutput("plot2"), br(), br(), br(), br(), br(), br(), br(), br(),  textOutput("test")),
               tabPanel("Summary", tableOutput("summary2")),
               tabPanel("Total Data Table", tableOutput("total_data2")),
               tabPanel("Statistical Summary", verbatimTextOutput("adv_summary2"))
@@ -125,10 +127,25 @@ my_ui <- navbarPage(
 
 my_server <- function(input, output) {
   output$test <- renderText({
-    if (input$feature == "Popularity") {
-      "lol"
-    } else {
-      "lmao"
+    if (input$feature2 == "Popularity") {
+      "The popularity of a track is a value between 0 and 100, with 100 being the most popular. Over the course of 35 years there has been an exponential growth. 
+      However there has also been rapid decrease in popularity, for example in the years from 1980 to 1987."
+    } else if (input$feature2 == "Danceability"){
+      "Danceability describes how suitable a track is for dancing.  A value of 0.0 is least danceable and 1.0 is most danceable. Over the course of 35 years there 
+      has been an increase and a decrease in the growth of dancability."
+    } else if (input$feature2 == "Energy"){
+      "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been a study increase
+      in energy."
+    } else if (input$feature2 == "Loudness"){
+      "lhe overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
+      loudness, however after the year 2010 there has been a decline in loudness."
+    } else if (input$feature2 == "Valence"){
+      "A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Over the course of 35 years there has been a steady decrease in valence."
+    } else if (input$feature2 == "Tempo"){
+      "The overall estimated tempo of a track in beats per minute (BPM). Over the course of 35 years there has been parabolic shape in the values of Tempo. In other words, 
+      from the years 1980 to 2000 there was a steady decline in tempo, however from 2000 to 2015 there was a steady increase."
+    } else if (input$feature2 == "Words_Per_Second"){
+      "n/a"
     }
   })
 
@@ -288,14 +305,14 @@ my_server <- function(input, output) {
       )
     p
   }, height = 550, width = 900)
+  
 
   output$table <- renderTable({
-    validate(
+    shiny::validate(
       need(input$songTitle, "Please choose a song title"),
       need(input$artistName, "Please choose an artist")
     )
     single_track_analysis(input$songTitle, input$artistName)
   })
 }
-
 shinyApp(ui = my_ui, server = my_server)
