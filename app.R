@@ -107,6 +107,7 @@ my_ui <- fluidPage(
       "Song Search",
       sidebarLayout(
         sidebarPanel(
+          titlePanel("Audio Analysis"),
           textInput(
             inputId =
               "songTitle",
@@ -120,10 +121,7 @@ my_ui <- fluidPage(
         includeMarkdown("searchFuncDescriptions.md")
       ),
       mainPanel(
-        tabsetPanel(
-          id = "tab", type = "tabs",
-          tabPanel("Audio Analysis", div(tableOutput("table"), style = "font-size:275%"))
-        )
+          div(tableOutput("table"), style = "font-size:275%")
       )
     )
   )
