@@ -34,7 +34,6 @@ track_ids <- function(name) {
     track_data
   }
 }
-# track_ids("quit losaws")
 
 # Get specific year's billboard top songs data. Taking in the specific year as the parameter.
 get_year <- function(year) {
@@ -108,3 +107,4 @@ combined_year_data <- function(billboard_songs) {
   combined_data <- combined_data_frames(billboard_songs) %>% 
     left_join(spotify_year_data, by = c("title" = "name", "duration_ms", "popularity"))
 }
+
