@@ -145,7 +145,7 @@ my_server <- function(input, output) {
       "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been a stready increase
       in energy."
     } else if (input$feature2 == "Loudness"){
-      "lhe overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
+      "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
       loudness. This is due to digital recordings now allowing sound to be louder overall without introducing audible background static and tape hiss, so audio engineers often elevate
       the volume of a song to the recordable limit that sacrifice quality and fidelity for loudness."
     } else if (input$feature2 == "Valence"){
@@ -156,7 +156,9 @@ my_server <- function(input, output) {
       "The overall estimated tempo of a track in beats per minute (BPM). Over the course of 35 years there has been parabolic shape in the values of Tempo. In other words, 
       from the years 1980 to 2000 there was a steady decline in tempo, however from 2000 to 2015 there was a steady increase."
     } else if (input$feature2 == "Words_Per_Second"){
-      "n/a"
+      "The average words per second of a song. From 1980 to the early 2000's we see a general increase with a positive point of inflection of the
+      words per minute. After 2000, there is a negative inflection point and we begin to see the words per second slow down and actually begin to 
+      decrease after 2008. This trend suggests that a decrease will continue."
     }
   })
   
