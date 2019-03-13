@@ -59,6 +59,8 @@ spotify_data <- function(billboard_data) {
   tracks_info
 }
 
+# Gets the danceability, energy, loudness, valence, and tempo for a specific song of a specifc artist. Takes in two string parameters one for the song title and 
+# the other for artist's name. 
 single_track_analysis <- function(title, artist) {
   name <- paste(title, artist)
   track_id <- track_ids(name)
@@ -66,8 +68,6 @@ single_track_analysis <- function(title, artist) {
   audio_analysis %>%
     select(-id)
 }
-
-# single_track_analysis("Where are ü now", "Jack ü")
 
 # Combine the billboard data from specific billboard data file with its corresponding Spotify data. Taking in a specific billboard data file as a parameter.
 combined_data_frames <- function(billboard_data) {
@@ -102,6 +102,7 @@ tracks_audio_features_data <- function(billboard_data) {
   combined_track_info
 }
 
+# Combine spotify data with billboard data by name, duration and popularity. Taking in a specific billboard data file as a parameter.
 combined_year_data <- function(billboard_songs) {
   spotify_year_data <- tracks_audio_features_data(billboard_songs)
   combined_data <- combined_data_frames(billboard_songs) %>%
