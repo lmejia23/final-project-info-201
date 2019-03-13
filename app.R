@@ -11,7 +11,7 @@ year_data <- read.csv("final_project_data.csv")
 my_ui <- fluidPage(
   theme = "bootstrap.css",
   titlePanel(
-    title = div(img(src = "logo_final.jpg", height=200, width=900, style = "display: block; margin-left: auto; margin-right: auto;")), windowTitle = "Music Analyzer"
+    title = div(img(src = "logo_final.jpg", height = 200, width = 900, style = "display: block; margin-left: auto; margin-right: auto;")), windowTitle = "Music Analyzer"
   ),
   navbarPage(
     title = "",
@@ -121,16 +121,17 @@ my_ui <- fluidPage(
           includeMarkdown("searchFuncDescriptions.md")
         ),
         mainPanel(
-          div(tableOutput("table"), style = "font-size:275%")#,
-          #track_info <- track_ids(paste(input$songTitle, input$artistName)),
-          #track_id <- track_info$id,
-          #tags$div(HTML(
+          div(tableOutput("table"), style = "font-size:275%") # ,
+          # track_info <- track_ids(paste(input$songTitle, input$artistName)),
+          # track_id <- track_info$id,
+          # tags$div(HTML(
           #      paste0("<iframe src=\"https://open.spotify.com/embed/song/", track_id, "\" width=\"300\" height=\"80\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>"))
-        ))
+        )
+      )
     )
   )
 )
-#)
+# )
 
 my_server <- function(input, output) {
   output$test <- renderText({
