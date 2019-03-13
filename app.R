@@ -146,7 +146,8 @@ my_server <- function(input, output) {
       fluctuations in energy, however has shown a general increase. From 1980 to the mid 1990's, there has been growth with negative inflections. 
       From then on, another point of inflection occurs, indicating an increase in energy. Again, another inflection occurs in mid 2005 era indicating
       another decrease in energy. However, the energy of music in later years (2000's onward) is greater than that of music from the 1980's-1990's.
-      This graph shows similarity to danceability trends of the same time frame"
+      This graph shows similarity to danceability trends of the same time frame. These trends could be related to the increase of electronic music and 
+      other genres such as hip-hop and its sub-genres."
     } else if (input$feature2 == "Loudness"){
       "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
       loudness. This is due to digital recordings now allowing sound to be louder overall without introducing audible background static and tape hiss, so audio engineers often elevate
@@ -157,11 +158,13 @@ my_server <- function(input, output) {
       loneliness, social isolation, and pschopathology."
     } else if (input$feature2 == "Tempo"){
       "The overall estimated tempo of a track in beats per minute (BPM). Over the course of 35 years there has been parabolic shape in the values of Tempo. In other words, 
-      from the years 1980 to 2000 there was a steady decline in tempo, however from 2000 to 2015 there was a steady increase."
+      from the years 1980 to 2000 there was a steady decline in tempo, however from 2000 to 2015 there was a steady increase. Another factor that may lead
+      to the recent (2000's and onward) increase in tempo could be attributed to the introductions of newer genres such as EDM (Electronic Dance Music)."
     } else if (input$feature2 == "Words_Per_Second"){
       "The average words per second of a song. From 1980 to the early 2000's we see a general increase with a positive point of inflection of the
       words per minute. After 2000, there is a negative inflection point and we begin to see the words per second slow down and actually begin to 
-      decrease after 2008. This trend suggests that a decrease will continue."
+      decrease after 2008. This trend suggests that a decrease will continue, which also can be attributed to the increase of music that is less lyrical 
+      based and more focused on rhythm (EDM, Mumble Rap, etc)"
     }
   })
   
