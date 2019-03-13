@@ -3,6 +3,7 @@ library(ggplot2)
 library(dplyr)
 library(markdown)
 library("jsonlite")
+names(tags)
 
 source("analysis.R")
 
@@ -93,7 +94,7 @@ my_ui <- fluidPage(
             mainPanel(
               tabsetPanel(
                 type = "tabs",
-                tabPanel("Plot", plotOutput("plot2"), br(), br(), br(), br(), br(), br(), br(), br(),  div(textOutput("test"),  style = "font-size:150%")),
+                tabPanel("Plot", plotOutput("plot2"), br(), br(), br(), br(), br(), br(), br(), br(),  div(uiOutput("test"),  style = "font-size:150%")),
                 tabPanel("Summary", tableOutput("summary2")),
                 tabPanel("Total Data Table", tableOutput("total_data2")),
                 tabPanel("Statistical Summary", verbatimTextOutput("adv_summary2"))
@@ -130,31 +131,29 @@ my_ui <- fluidPage(
     )
   )
 )
-#)
 
 my_server <- function(input, output) {
-  output$test <- renderText({
+  output$test <- renderUI({
     if (input$feature2 == "Popularity") {
-      paste("The popularity of a track is a value between 0 and 100, with 100 being the most popular. Over the course of 35 years there has been an exponential growth. 
-      This is due to idea that popular music lyrics now include more words related to a focus on the self, fewer words describing
-      companionship and social contact and more anti-social words correlating with the overall increase in tendencies towards loneliness and social isolation.")
+      "The popularity of a track is a value between 0 and 100, with 100 being the most popular. Over the course of 35 years there has been an exponential growth. Based on our data, music that
+      has been released more recently is, on average, more popular according to spotifys metrics which shows an exponential growth over the course of 35 years."
     } else if (input$feature2 == "Danceability"){
       "Danceability describes how suitable a track is for dancing.  A value of 0.0 is least danceable and 1.0 is most danceable. Over the course of 35 years there 
       has been an increase and a decrease in the growth of dancability. This can possibily be related to to the increase in 'electronic' and 'atonal' characteristics."
     } else if (input$feature2 == "Energy"){
       "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been 
-      fluctuations in energy, however has shown a general increase. From 1980 to the mid 1990's, there has been growth with negative inflections. 
+      fluctuations in energy, however it has shown a general increase. From 1980 to the mid 1990's, there has been growth with negative inflections. 
       From then on, another point of inflection occurs, indicating an increase in energy. Again, another inflection occurs in mid 2005 era indicating
       another decrease in energy. However, the energy of music in later years (2000's onward) is greater than that of music from the 1980's-1990's.
-      This graph shows similarity to danceability trends of the same time frame"
+      This graph shows similarity to danceability trends of the same time frame."
     } else if (input$feature2 == "Loudness"){
-      "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
+      HTML('The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
       loudness. This is due to digital recordings now allowing sound to be louder overall without introducing audible background static and tape hiss, so audio engineers often elevate
-      the volume of a song to the recordable limit that sacrifice quality and fidelity for loudness."
+      the volume of a song to the recordable limit that sacrifice quality and fidelity for loudness. <a href="https://www.theatlantic.com/entertainment/archive/2013/11/the-real-reason-musics-gotten-so-loud/281707/"><sup>1</sup></a>')
     } else if (input$feature2 == "Valence"){
-      "A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Over the course of 35 years there has been a steady decrease in valence. This can be due to the 
+      HTML('A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Over the course of 35 years there has been a steady decrease in valence. This can be due to the 
       idea that music now and days have fewer words describing companionship and social contact and more anti-social words correlating with the overall increase in tendencies towards
-      loneliness, social isolation, and pschopathology."
+      loneliness, social isolation, and pschopathology.<a href="https://royalsocietypublishing.org/doi/pdf/10.1098/rsos.171274"><sup>1</sup></a>')
     } else if (input$feature2 == "Tempo"){
       "The overall estimated tempo of a track in beats per minute (BPM). Over the course of 35 years there has been parabolic shape in the values of Tempo. In other words, 
       from the years 1980 to 2000 there was a steady decline in tempo, however from 2000 to 2015 there was a steady increase."
