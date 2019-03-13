@@ -1,4 +1,4 @@
-Choose between the following attributes to compare years of music, defined here (definitions provided by the [Spotify API](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/) All values are determined based off of each year's respective average.:
+Choose between the following attributes to compare years of music, defined here (definitions provided by the [Spotify API](https://developer.spotify.com/documentation/web-api/reference/tracks/get-several-audio-features/). All values are determined based off of each year's respective average:
 
 - **Popularity**: The popularity of a track is a value between 0 and 100, with 100 being the most popular. The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track has had and how recent those plays are.
 
