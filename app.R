@@ -142,8 +142,11 @@ my_server <- function(input, output) {
       "Danceability describes how suitable a track is for dancing.  A value of 0.0 is least danceable and 1.0 is most danceable. Over the course of 35 years there 
       has been an increase and a decrease in the growth of dancability. This can possibily be related to to the increase in 'electronic' and 'atonal' characteristics."
     } else if (input$feature2 == "Energy"){
-      "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been a stready increase
-      in energy."
+      "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been 
+      fluctuations in energy, however has shown a general increase. From 1980 to the mid 1990's, there has been growth with negative inflections. 
+      From then on, another point of inflection occurs, indicating an increase in energy. Again, another inflection occurs in mid 2005 era indicating
+      another decrease in energy. However, the energy of music in later years (2000's onward) is greater than that of music from the 1980's-1990's.
+      This graph shows similarity to danceability trends of the same time frame"
     } else if (input$feature2 == "Loudness"){
       "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
       loudness. This is due to digital recordings now allowing sound to be louder overall without introducing audible background static and tape hiss, so audio engineers often elevate
