@@ -121,10 +121,7 @@ my_ui <- fluidPage(
           includeMarkdown("searchFuncDescriptions.md")
         ),
         mainPanel(
-          tabsetPanel(
-            id = "tab", type = "tabs",
-            tabPanel("Audio Analysis", div(tableOutput("table"), style = "font-size:275%"), br(), uiOutput("spotifyframe"))
-          )
+          div(tableOutput("table"), style = "font-size:275%"), br(), uiOutput("spotifyframe")
         )
       )
     )
@@ -134,26 +131,28 @@ my_ui <- fluidPage(
 my_server <- function(input, output) {
   output$test <- renderText({
     if (input$feature2 == "Popularity") {
-      paste("The popularity of a track is a value between 0 and 100, with 100 being the most popular. Over the course of 35 years there has been an exponential growth. 
+      paste("The popularity of a track is a value between 0 and 100, with 100 being the most popular. Over the course of 35 years there has been an overall growth. 
       This is due to idea that popular music lyrics now include more words related to a focus on the self, fewer words describing
-      companionship and social contact and more anti-social words correlating with the overall increase in tendencies towards loneliness and social isolation.")
+      companionship and social contact and more anti-social words correlating with the overall increase in tendencies towards loneliness and social isolation. Judging from the
+      growth, we can say that songs which have charted more recently are more popular among today's Spotify listeners.")
     } else if (input$feature2 == "Danceability") {
       "Danceability describes how suitable a track is for dancing.  A value of 0.0 is least danceable and 1.0 is most danceable. Over the course of 35 years there 
-      has been an increase and a decrease in the growth of dancability. This can possibily be related to to the increase in 'electronic' and 'atonal' characteristics."
+      hasn't really been any notable change in danceablility. This is probably related to the fact that most popular music is easy listening and easy to dance to. There isn't a very
+      strong deviance in the data with most years hovering around an average danceability of .64"
     } else if (input$feature2 == "Energy") {
-      "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there has been 
-      fluctuations in energy, however has shown a general increase. From 1980 to the mid 1990's, there has been growth with negative inflections. 
+      "Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Over the course of 35 years there have been 
+      fluctuations in energy, however overall it has shown a general increase. From 1980 to the mid 1990's, there has been growth with occasional negative inflections. 
       From then on, another point of inflection occurs, indicating an increase in energy. Again, another inflection occurs in mid 2005 era indicating
       another decrease in energy. However, the energy of music in later years (2000's onward) is greater than that of music from the 1980's-1990's.
       This graph shows similarity to danceability trends of the same time frame. These trends could be related to the increase of electronic music and 
       other genres such as hip-hop and its sub-genres."
     } else if (input$feature2 == "Loudness"){
-      "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase 
+      "The overall loudness of a track in decibels (dB). Values typically range between -60 and 0 dB. Over the course of 35 years there has a been a steady increase in
       loudness. This is due to digital recordings now allowing sound to be louder overall without introducing audible background static and tape hiss, so audio engineers often elevate
-      the volume of a song to the recordable limit that sacrifice quality and fidelity for loudness."
+      the volume of a song to the recordable limit without having to sacrifice quality and fidelity for loudness."
     } else if (input$feature2 == "Valence") {
-      "A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Over the course of 35 years there has been a steady decrease in valence. This can be due to the 
-      idea that music now and days have fewer words describing companionship and social contact and more anti-social words correlating with the overall increase in tendencies towards
+      "A measure from 0.0 to 1.0 describing the musical positivity conveyed by a track. Over the course of 35 years there has been a steady decrease in valence. This could be due to the 
+      idea that music nowadays has fewer words describing companionship and social contact, and more anti-social words correlating with the overall increase in tendencies towards
       loneliness, social isolation, and pschopathology."
     } else if (input$feature2 == "Tempo") {
       "The overall estimated tempo of a track in beats per minute (BPM). Over the course of 35 years there has been parabolic shape in the values of Tempo. In other words, 
@@ -161,7 +160,8 @@ my_server <- function(input, output) {
       to the recent (2000's and onward) increase in tempo could be attributed to the introductions of newer genres such as EDM (Electronic Dance Music)."
     } else if (input$feature2 == "Words_Per_Second") {
       "The average words per second of a song. From 1980 to the early 2000's we see a general increase with a positive point of inflection of the
-      words per minute. After 2000, there is a negative inflection point and we begin to see the words per second slow down and actually begin to 
+      words per minute. This large static increase in lyrical density is most likely due to rap/hip hop becoming more prevelent in the mainstream.
+      After 2000, there is a negative inflection point and we begin to see the words per second slow down and actually begin to 
       decrease after 2008. This trend suggests that a decrease will continue, which also can be attributed to the increase of music that is less lyrical 
       based and more focused on rhythm (EDM, Mumble Rap, etc)"
     }
